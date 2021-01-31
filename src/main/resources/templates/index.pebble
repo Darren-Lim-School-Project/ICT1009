@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>trade-handler</title>
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700,300italic,400italic,700italic&display=swap" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.8.55/css/materialdesignicons.min.css" integrity="sha512-x96qcyADhiw/CZY7QLOo7dB8i/REOEHZDhNfoDuJlyQ+yZzhdy91eAa4EkO7g3egt8obvLeJPoUKEKu5C5JYjA==" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="{{ mix("/css/app.css") }}">
+  <style>
+    [v-cloak] {
+      display: block;
+      padding: 50px 0;
+    }
+
+    @keyframes spinner {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    [v-cloak]:before {
+      content: "";
+      box-sizing: border-box;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      margin-top: -10px;
+      margin-left: -10px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      border-top-color: #333;
+      animation: spinner 0.6s linear infinite;
+      text-indent: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    [v-cloak] > * {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<div id="app" v-cloak>
+  <p>
+  <div class="tabs is-centered">
+    <ul>
+      <router-link tag="li" to="/hunt"><a>Hunt</a></router-link>
+      <router-link tag="li" to="/status"><a>Status</a></router-link>
+    </ul>
+  </div>
+  </p>
+  <div class="container px-3">
+    <router-view></router-view>
+  </div>
+</div>
+<script src="{{ mix("/js/app.js") }}"></script>
+</body>
+</html>
