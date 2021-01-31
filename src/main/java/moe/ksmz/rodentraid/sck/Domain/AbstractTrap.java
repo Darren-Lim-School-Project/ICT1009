@@ -7,16 +7,22 @@ public abstract class AbstractTrap implements Trappable {
     protected final Long power;
     protected final Long bonus;
     protected final Long luck;
+    protected final Freshness freshness;
 
-    public AbstractTrap(String name, Long power, Long bonus, Long luck) {
+    public AbstractTrap(String name, Long power, Long bonus, Long luck, Integer freshness) {
         this.name = name;
         this.power = power;
         this.bonus = bonus;
         this.luck = luck;
+        this.freshness = Freshness.of(freshness);
     }
 
     public String getName() {
         return name;
+    }
+
+    public Freshness getFreshness() {
+        return freshness;
     }
 
     @Override

@@ -16,6 +16,11 @@ public class Mice {
     }
 
     // TODO: finish
+    public boolean hasNonStandardEffectAgainst(TrapTypes trapType) {
+        return false;
+    }
+
+    // TODO: finish
     public Long getEffectivenessAgainst(TrapTypes trapType) {
         return 0L;
     }
