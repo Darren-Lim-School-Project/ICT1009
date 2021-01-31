@@ -6,16 +6,6 @@ networks:
 volumes:
   postgres-data:
 services:
-  app:
-    image: rodentraid:0.0.1-SNAPSHOT
-    container_name: web-app
-    ports:
-      - "8080:8080"
-    networks:
-      - backend
-    depends_on:
-      - redis
-      - db
   redis:
     image: redis:alpine
     ports:
