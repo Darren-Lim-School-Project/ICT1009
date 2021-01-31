@@ -20,6 +20,10 @@ These are not required for development.
 By default, spring will default to using an in memory database (h2) and tomcat's standard session implementation. To
 change this, copy `application.yml.example` to `application.yml` under `config/` and configure accordingly.
 
+## About
+
+A Single Page Application (SPA) built with Vue (JS), with Spring MVC (Java) powering the backend. 
+
 ## Frontend
 You should be at least running Node >14. Remember to start up the backend (`spring-boot:run`) in addition to running `hot`.
 
