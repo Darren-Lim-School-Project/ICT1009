@@ -1,9 +1,9 @@
 package moe.ksmz.rodentraid.sck.Domain.Contracts;
 
 public interface Trappable {
-    public Long getPower();
+    Long getPower();
 
-    public Long getBonus();
+    Long getBonus();
 
-    public Long getLuck();
+    Long getLuck();
 }
