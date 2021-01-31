@@ -1,7 +1,7 @@
 name: CI
 on: push
 jobs:
-  run_tests:
+  ci:
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -34,4 +34,4 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       - name: Run tests with Maven
-        run: mvn -B test --file pom.xml
+        run: mvn test -Dspring.profiles.active=ci --file pom.xml
