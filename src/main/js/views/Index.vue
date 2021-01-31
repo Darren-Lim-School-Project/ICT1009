@@ -1,7 +1,6 @@
 <template>
     <div class="container">
         <div class="columns pt-3">
-            <Sidebar />
             <div class="column is-9">
                 <section class="hero is-info welcome is-small">
                     <div class="hero-body">
