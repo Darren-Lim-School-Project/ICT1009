@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>moe.ksmz.rodentraid.sck.Domain</OriginalElement>
+  <nodes>
+    <node x="0.0" y="686.0">moe.ksmz.rodentraid.sck.Domain.Base</node>
+    <node x="719.25" y="912.5">moe.ksmz.rodentraid.sck.Domain.Location</node>
+    <node x="68.45572916666663" y="0.0">moe.ksmz.rodentraid.sck.Domain.Freshness</node>
+    <node x="234.5567708333333" y="868.0">moe.ksmz.rodentraid.sck.Domain.Weapon</node>
+    <node x="466.0322916666666" y="337.5">moe.ksmz.rodentraid.sck.Domain.TrapTypes</node>
+    <node x="276.0" y="674.5">moe.ksmz.rodentraid.sck.Domain.Cat</node>
+    <node x="80.45572916666663" y="282.0">moe.ksmz.rodentraid.sck.Domain.AbstractTrap</node>
+    <node x="488.0" y="127.0">moe.ksmz.rodentraid.sck.Domain.Rank</node>
+    <node x="607.0" y="608.0">moe.ksmz.rodentraid.sck.Domain.Mice</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="moe.ksmz.rodentraid.sck.Domain.Cat" target="moe.ksmz.rodentraid.sck.Domain.AbstractTrap">
+      <point x="-116.625" y="-38.5" />
+      <point x="314.875" y="583.0" />
+      <point x="268.58072916666663" y="583.0" />
+      <point x="37.625" y="138.0" />
+    </edge>
+    <edge source="moe.ksmz.rodentraid.sck.Domain.Base" target="moe.ksmz.rodentraid.sck.Domain.AbstractTrap">
+      <point x="64.0" y="-27.0" />
+      <point x="192.0" y="583.0" />
+      <point x="193.33072916666663" y="583.0" />
+      <point x="-37.625" y="138.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.8375262054507338" x="467.0" y="539.0" />
+  <SelectedNodes>
+    <node>moe.ksmz.rodentraid.sck.Domain.Rank</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
