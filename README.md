@@ -17,7 +17,16 @@ These are not required for development.
 
 ### Configuration
 
-By default, spring will default to using an in memory database (h2) and tomcat's standard session implementation. To change this, copy `application.yml.example` to `application.yml` under `config/` and configure accordingly.
+By default, spring will default to using an in memory database (h2) and tomcat's standard session implementation. To
+change this, copy `application.yml.example` to `application.yml` under `config/` and configure accordingly.
+
+## Frontend
+You should be at least running Node >14. Remember to start up the backend (`spring-boot:run`) in addition to running `hot`.
+
+### Developing
+- `npm install`
+- `npm run hot`
+
 
 ## Docker
 
@@ -27,6 +36,6 @@ There is a separate docker-compose file that starts up redis and postgres *only*
 `docker-compose -f docker-compose-dev.yml up`
 
 ### Deploying with Docker
-
+- `npm run prod`
 - `mvn clean package spring-boot:repackage dockerfile:build -DskipTests`
 - `docker-compose up`
