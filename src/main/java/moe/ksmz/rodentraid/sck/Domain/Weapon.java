@@ -20,14 +20,14 @@ public class Weapon {
     }
 
     // TODO: finish
-    private boolean shouldBeCaught(Mice mice) {
+    public boolean shouldBeCaught(Mice mice) {
         return false;
         //        if (mice.getPower() > totalTrapPower()) {
         //
         //        }
     }
 
-    private boolean feelingLucky(Long luck) {
+    public boolean feelingLucky(Long luck) {
         if (luck <= 0) {
             return false;
         }

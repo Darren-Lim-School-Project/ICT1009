@@ -1,41 +1,22 @@
 package moe.ksmz.rodentraid.sck.Domain;
 
 public class Mice {
-    private Long weight;
-    private Long gold;
+    private final String name;
+    private final Long weight;
+    private final Long gold;
+    private final Long points;
+    private final Long power;
 
-    public Long getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Long weight) {
+    public Mice(String name, Long weight, Long gold, Long points, Long power) {
+        this.name = name;
         this.weight = weight;
-    }
-
-    public Long getGold() {
-        return gold;
-    }
-
-    public void setGold(Long gold) {
         this.gold = gold;
-    }
-
-    public Long getPoints() {
-        return points;
-    }
-
-    public void setPoints(Long points) {
         this.points = points;
-    }
-
-    public Long getPower() {
-        return power;
-    }
-
-    public void setPower(Long power) {
         this.power = power;
     }
 
-    private Long points;
-    private Long power;
+    // TODO: finish
+    public Long getEffectivenessAgainst(TrapTypes trapType) {
+        return 0L;
+    }
 }
