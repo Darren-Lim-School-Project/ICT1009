@@ -1,4 +1,4 @@
-<p align="center"><img src="/main/assets/logo.png" width="400"></p>
+<p align="center"><img src="/assets/logo.png" width="400"></p>
 <p align="center">
 <a href="https://github.com/sgtechICT1009/ict1009-team64-2021/actions"><img src="https://github.com/sgtechICT1009/ict1009-team64-2021/workflows/CI/badge.svg?branch=main" alt="Build Status"></a>
 </p>
