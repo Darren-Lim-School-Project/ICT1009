@@ -1,9 +1,10 @@
 spring:
-  redis:
-    port: 6379
-    host: localhost
+  # redis:
+  #   port: 6379
+  #   host: localhost
   session:
-    store-type: redis
+    # or redis
+    store-type: none
   jpa:
     hibernate:
       ddl-auto: update
