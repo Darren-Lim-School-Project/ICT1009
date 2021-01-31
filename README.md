@@ -5,7 +5,7 @@
 
 ### Getting started
 
-- Clone this repository: `git clone https://github.com/sgtechICT1009/ict1009-team64-2021.git`
+- `git clone https://github.com/sgtechICT1009/ict1009-team64-2021.git`
 - `mvn clean spring-boot:run` or `mvnw clean spring-boot:run` (cmd, for powershell: `.\mvnw`)
 
 ### Production dependencies
