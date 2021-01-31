@@ -1,7 +1,10 @@
 let mix = require("laravel-mix");
+let config = require('./webpack.config');
+
 mix.disableNotifications();
 mix.setPublicPath("src/main/resources/static/");
 mix.setResourceRoot("src/main/resources/static/");
+mix.webpackConfig(config);
 
 mix.js("src/main/js/app.js", "js/app.js")
    .vue()
