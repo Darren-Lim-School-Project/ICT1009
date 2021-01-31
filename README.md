@@ -6,7 +6,7 @@
 ### Getting started
 
 - `git clone https://github.com/sgtechICT1009/ict1009-team64-2021.git`
-- `mvn clean spring-boot:run` or `mvnw clean spring-boot:run` (cmd, for powershell: `.\mvnw`)
+- `mvn clean spring-boot:run`
 
 ### Production dependencies
 
@@ -14,6 +14,10 @@ These are not required for development.
 
 - PostgreSQL 12 (Persistence)
 - Redis (Sessions, Cache)
+
+### Configuration
+
+By default, spring will default to using an in memory database (h2) and tomcat's standard session implementation. To change this, copy `application.yml.example` to `application.yml` under `config/` and configure accordingly.
 
 ## Docker
 
