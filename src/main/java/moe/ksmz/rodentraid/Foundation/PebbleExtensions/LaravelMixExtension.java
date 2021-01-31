@@ -1,4 +1,4 @@
-package moe.ksmz.rodentraid.Foundation;
+package moe.ksmz.rodentraid.Foundation.PebbleExtensions;
 
 import com.mitchellbosecke.pebble.attributes.AttributeResolver;
 import com.mitchellbosecke.pebble.extension.*;
@@ -15,7 +15,7 @@ public class LaravelMixExtension implements Extension {
 
     private final MixFunction mixFunction;
 
-    public LaravelMixExtension(moe.ksmz.rodentraid.Foundation.MixFunction mixFunction) {
+    public LaravelMixExtension(MixFunction mixFunction) {
         this.mixFunction = mixFunction;
     }
 

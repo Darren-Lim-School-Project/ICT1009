@@ -15,11 +15,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
         return new Hibernate5Module();
     }
 
+    /**
+     * Set up the "catch-all" route to let Vue handle all frontend route requests.
+     *
+     * @param registry
+     */
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         // Map "/"
         registry.addViewController("/").setViewName("forward:/");
-
         // Single directory level - no need to exclude "api"
         registry.addViewController("/{x:[\\w\\-]+}").setViewName("forward:/");
         // Multi-level directory path, need to exclude "api" on the first part of the path

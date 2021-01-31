@@ -1,4 +1,4 @@
-package moe.ksmz.rodentraid.Foundation;
+package moe.ksmz.rodentraid.Foundation.PebbleExtensions;
 
 import com.mitchellbosecke.pebble.boot.autoconfigure.PebbleProperties;
 import com.mitchellbosecke.pebble.extension.Function;
@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.boot.json.JsonParser;
 import org.springframework.boot.json.JsonParserFactory;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StreamUtils;
@@ -41,9 +40,9 @@ public class MixFunction implements Function {
         var key = (String) map.get("path");
         try {
             if (!pebbleProperties.isCache() || cache == null) {
-                Resource manifestation =
+                var manifestation =
                         resourceLoader.getResource("classpath:static/mix-manifest.json");
-                String json =
+                var json =
                         StreamUtils.copyToString(
                                 manifestation.getInputStream(), StandardCharsets.UTF_8);
                 cache = jsonParser.parseMap(json);
