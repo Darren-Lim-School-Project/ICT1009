@@ -4,7 +4,9 @@ import java.util.List;
 import moe.ksmz.rodentraid.sck.Domain.Location;
 import moe.ksmz.rodentraid.sck.Domain.Mice;
 import moe.ksmz.rodentraid.sck.Service.Contracts.LocationManager;
+import org.springframework.stereotype.Service;
 
+@Service
 public class LocationService implements LocationManager {
     private boolean loaded = false;
 
