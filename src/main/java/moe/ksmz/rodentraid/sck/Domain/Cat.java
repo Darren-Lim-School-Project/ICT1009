@@ -7,4 +7,15 @@ public class Cat extends AbstractTrap {
         super(name, power, bonus, luck, freshness);
         this.type = type;
     }
+
+
+    @Override
+    public Long getBonus() {
+        return bonus * 2;
+    }
+
+    @Override
+    public Long getLuck() {
+        return luck * 2;
+    }
 }
