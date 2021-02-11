@@ -8,7 +8,6 @@ public class Cat extends AbstractTrap {
         this.type = type;
     }
 
-
     @Override
     public Long getBonus() {
         return bonus * 2;
