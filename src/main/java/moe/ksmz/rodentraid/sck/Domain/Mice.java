@@ -1,18 +1,80 @@
 package moe.ksmz.rodentraid.sck.Domain;
 
-public class Mice {
-    private final String name;
-    private final Long weight;
-    private final Long gold;
-    private final Long points;
-    private final Long power;
+import com.opencsv.bean.CsvBindByName;
 
-    public Mice(String name, Long weight, Long gold, Long points, Long power) {
+public class Mice {
+
+    @CsvBindByName(column = "Mouse")
+    private String name;
+
+    /* I don't know how to put this into the csv :P
+    private final Long weight;
+     */
+
+    @CsvBindByName(column = "Power")
+    private Long power;
+
+    @CsvBindByName(column = "Gold")
+    private Long gold;
+
+    @CsvBindByName(column = "Points")
+    private Long points;
+
+    public Mice() {
+        /* Needs the default constructor for OpenCSV to work for some reason
+        *  So the variables can't be final ;-; */
+    }
+
+    public Mice(String name, Long gold, Long points, Long power) {
         this.name = name;
+        /*
         this.weight = weight;
+         */
         this.gold = gold;
         this.points = points;
         this.power = power;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getPower() {
+        return power;
+    }
+
+    public void setPower(Long power) {
+        this.power = power;
+    }
+
+    public Long getGold() {
+        return gold;
+    }
+
+    public void setGold(Long gold) {
+        this.gold = gold;
+    }
+
+    public Long getPoints() {
+        return points;
+    }
+
+    public void setPoints(Long points) {
+        this.points = points;
+    }
+
+    @Override
+    public String toString() {
+        return "Mice{" +
+                "name='" + name + '\'' +
+                ", power=" + power +
+                ", gold=" + gold +
+                ", points=" + points +
+                '}';
     }
 
     // TODO: finish
