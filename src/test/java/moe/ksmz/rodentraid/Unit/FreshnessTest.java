@@ -38,4 +38,11 @@ class FreshnessTest {
         assertThat(Freshness.of(9)).isEqualTo(Freshness.of(6));
         assertThat(Freshness.of(4)).isEqualTo(Freshness.of(4));
     }
+
+    @Test
+    void throwsAnError() {
+        assertThatIllegalArgumentException().isThrownBy(() -> new Freshness(-7));
+        assertThatIllegalArgumentException().isThrownBy(() -> new Freshness(7));
+        assertThatNoException().isThrownBy(() -> new Freshness(6));
+    }
 }

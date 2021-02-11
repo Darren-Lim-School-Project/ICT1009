@@ -25,6 +25,10 @@ public class Freshness {
                     entry(6, "Über Fresh"));
 
     public Freshness(int freshness) {
+        if (freshness < -6 || freshness > 6) {
+            throw new IllegalArgumentException("Freshness needs to be between -6 and +6");
+        }
+
         this.effect = freshness;
     }
 
