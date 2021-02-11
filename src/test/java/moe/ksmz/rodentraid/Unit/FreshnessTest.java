@@ -1,6 +1,6 @@
 package moe.ksmz.rodentraid.Unit;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 import moe.ksmz.rodentraid.sck.Domain.Freshness;
 import org.junit.jupiter.api.Test;
@@ -44,5 +44,13 @@ class FreshnessTest {
         assertThatIllegalArgumentException().isThrownBy(() -> new Freshness(-7));
         assertThatIllegalArgumentException().isThrownBy(() -> new Freshness(7));
         assertThatNoException().isThrownBy(() -> new Freshness(6));
+    }
+
+    @Test
+    void returnsStaleChance() {
+        assertThat(Freshness.of(6).getStaleChance()).isCloseTo(0.0d, within(0.01));
+        assertThat(Freshness.of(-6).getStaleChance()).isCloseTo(1.0d, within(0.01));
+        assertThat(Freshness.of(-4).getStaleChance()).isCloseTo(0.8d, within(0.01));
+        assertThat(Freshness.of(4).getStaleChance()).isCloseTo(0.2d, within(0.01));
     }
 }

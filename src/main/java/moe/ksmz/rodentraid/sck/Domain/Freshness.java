@@ -24,12 +24,32 @@ public class Freshness {
                     entry(5, "Ultimately Fresh"),
                     entry(6, "Über Fresh"));
 
+    private static final Map<Integer, Double> chanceTable =
+            Map.ofEntries(
+                    entry(-6, 1.0),
+                    entry(-5, 0.9),
+                    entry(-4, 0.8),
+                    entry(-3, 0.7),
+                    entry(-2, 0.6),
+                    entry(-1, 0.55),
+                    entry(0, 0.5),
+                    entry(1, 0.45),
+                    entry(2, 0.4),
+                    entry(3, 0.3),
+                    entry(4, 0.2),
+                    entry(5, 0.1),
+                    entry(6, 0.0));
+
     public Freshness(int freshness) {
         if (freshness < -6 || freshness > 6) {
             throw new IllegalArgumentException("Freshness needs to be between -6 and +6");
         }
 
         this.effect = freshness;
+    }
+
+    public Double getStaleChance() {
+        return chanceTable.get(effect);
     }
 
     /**
