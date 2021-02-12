@@ -24,6 +24,12 @@ public class DatabaseSeeder implements CommandLineRunner {
             return;
         }
 
+        var h = new User();
+        h.setName("x");
+        h.setPassword(BCrypt.withDefaults().hashToString(12, "secret".toCharArray()));
+        h.setEmail("x");
+        userRepository.save(h);
+
         var faker = new Faker();
         var users = new ArrayList<User>();
         for (var i = 0; i < 5; i++) {
