@@ -8,7 +8,7 @@ import org.springframework.web.context.annotation.SessionScope;
 @Component
 @SessionScope
 public class AuthStatus {
-    private Optional<User> currentUser;
+    private Optional<User> currentUser = Optional.empty();
 
     public void setCurrentUser(User user) {
         this.currentUser = Optional.of(user);
