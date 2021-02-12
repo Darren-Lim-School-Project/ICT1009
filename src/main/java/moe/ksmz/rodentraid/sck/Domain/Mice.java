@@ -7,10 +7,6 @@ public class Mice {
     @CsvBindByName(column = "Mouse")
     private String name;
 
-    /* I don't know how to put this into the csv :P
-    private final Long weight;
-     */
-
     @CsvBindByName(column = "Power")
     private Long power;
 
@@ -27,9 +23,6 @@ public class Mice {
 
     public Mice(String name, Long gold, Long points, Long power) {
         this.name = name;
-        /*
-        this.weight = weight;
-         */
         this.gold = gold;
         this.points = points;
         this.power = power;
