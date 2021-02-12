@@ -1,6 +1,5 @@
 package moe.ksmz.rodentraid.sck.Service;
 
-import java.io.FileNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import moe.ksmz.rodentraid.sck.Service.Contracts.Loadable;
 import org.springframework.beans.BeansException;
@@ -16,7 +15,7 @@ public class PostProcessor implements BeanPostProcessor {
         if (bean instanceof Loadable) {
             try {
                 ((Loadable<?>) bean).loadEntries();
-            } catch (FileNotFoundException e) {
+            } catch (Exception e) {
                 log.error("Failed to load entries for {}: {}", beanName, e.getMessage());
             }
         }

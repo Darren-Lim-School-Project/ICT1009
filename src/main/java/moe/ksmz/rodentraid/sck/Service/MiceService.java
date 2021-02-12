@@ -1,9 +1,8 @@
 package moe.ksmz.rodentraid.sck.Service;
 
 import com.opencsv.bean.CsvToBeanBuilder;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 import moe.ksmz.rodentraid.sck.Domain.Mice;
 import moe.ksmz.rodentraid.sck.Service.Contracts.MiceManager;
@@ -20,9 +19,9 @@ public class MiceService implements MiceManager {
     Resource resourceFile;
 
     @Override
-    public List<Mice> loadEntries() throws FileNotFoundException {
+    public List<Mice> loadEntries() throws IOException {
         miceList =
-                new CsvToBeanBuilder<Mice>(new FileReader((File) resourceFile))
+                new CsvToBeanBuilder<Mice>(new FileReader(resourceFile.getFile()))
                         .withType(Mice.class)
                         .build()
                         .parse();
