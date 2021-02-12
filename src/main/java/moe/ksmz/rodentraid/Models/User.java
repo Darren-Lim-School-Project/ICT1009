@@ -24,12 +24,16 @@ public class User extends BaseModel {
     @Column(nullable = false)
     private String email;
 
+    @Column(nullable = false)
+    private String password;
+
     private Long points;
 
-    public User(Long id, String name, String email, Long points) {
+    public User(Long id, String name, String email, String password, Long points) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.password = password;
         this.points = points;
     }
 
