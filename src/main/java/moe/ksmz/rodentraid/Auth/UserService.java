@@ -14,8 +14,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public Optional<User> attemptLogin(String username, String password) {
-        var user = userRepository.findByEmail(username);
+    public Optional<User> attemptLogin(String email, String password) {
+        var user = userRepository.findByEmail(email);
         if (user.isEmpty()) {
             return Optional.empty();
         }
