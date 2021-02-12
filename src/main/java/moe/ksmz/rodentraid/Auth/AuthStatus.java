@@ -20,6 +20,6 @@ public class AuthStatus implements Serializable {
     }
 
     public boolean isLoggedIn() {
-        return currentUser == null;
+        return currentUser != null;
     }
 }
