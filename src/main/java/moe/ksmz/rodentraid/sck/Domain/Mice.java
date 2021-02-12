@@ -22,7 +22,7 @@ public class Mice {
 
     public Mice() {
         /* Needs the default constructor for OpenCSV to work for some reason
-        *  So the variables can't be final ;-; */
+         *  So the variables can't be final ;-; */
     }
 
     public Mice(String name, Long gold, Long points, Long power) {
@@ -69,12 +69,17 @@ public class Mice {
 
     @Override
     public String toString() {
-        return "Mice{" +
-                "name='" + name + '\'' +
-                ", power=" + power +
-                ", gold=" + gold +
-                ", points=" + points +
-                '}';
+        return "Mice{"
+                + "name='"
+                + name
+                + '\''
+                + ", power="
+                + power
+                + ", gold="
+                + gold
+                + ", points="
+                + points
+                + '}';
     }
 
     // TODO: finish
