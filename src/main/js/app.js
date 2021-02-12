@@ -1,7 +1,9 @@
 import webstomp from "webstomp-client";
 import VueRouter from "vue-router";
 import Vue from "vue";
-import Buefy from "buefy";
+import { router } from "./router";
+import Buefy, { NotificationProgrammatic as Notify } from "buefy";
+import App from "@/views/App";
 
 Vue.use(VueRouter);
 Vue.use(Buefy);
@@ -20,5 +22,6 @@ Vue.config.errorHandler = (err, vm, info) => {
 };
 
 new Vue({
+    render: (h) => h(App),
     router,
 }).$mount("#app");

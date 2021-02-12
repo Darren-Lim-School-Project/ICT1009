@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="columns pt-3">
-            <div class="column is-9">
+            <div class="column is-12">
                 <section class="hero is-info welcome is-small">
                     <div class="hero-body">
                         <div class="container">
