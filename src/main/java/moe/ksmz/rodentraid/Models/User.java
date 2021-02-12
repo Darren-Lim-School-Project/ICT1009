@@ -1,6 +1,7 @@
 package moe.ksmz.rodentraid.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
 import javax.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ import moe.ksmz.rodentraid.sck.Domain.Rank;
 @Getter
 @Setter
 @NoArgsConstructor
-public class User extends BaseModel {
+public class User extends BaseModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
