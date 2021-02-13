@@ -1,4 +1,5 @@
 import webstomp from "webstomp-client";
+import store from "@/store";
 import VueRouter from "vue-router";
 import Vue from "vue";
 import { router } from "./router";
@@ -23,5 +24,6 @@ Vue.config.errorHandler = (err, vm, info) => {
 
 new Vue({
     render: (h) => h(App),
+    store,
     router,
 }).$mount("#app");
