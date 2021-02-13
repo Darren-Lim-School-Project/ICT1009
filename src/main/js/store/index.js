@@ -1,6 +1,6 @@
-import Vuex from "vuex";
-import Vue from "vue";
 import auth from "@/store/modules/auth";
+import Vue from "vue";
+import Vuex from "vuex";
 
 Vue.use(Vuex);
 

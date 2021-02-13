@@ -1,10 +1,11 @@
-import webstomp from "webstomp-client";
 import store from "@/store";
-import VueRouter from "vue-router";
-import Vue from "vue";
-import { router } from "./router";
-import Buefy, { NotificationProgrammatic as Notify } from "buefy";
 import App from "@/views/App";
+import Buefy, { NotificationProgrammatic as Notify } from "buefy";
+import Vue from "vue";
+import VueRouter from "vue-router";
+import webstomp from "webstomp-client";
+
+import { router } from "./router";
 
 Vue.use(VueRouter);
 Vue.use(Buefy);
