@@ -23,6 +23,6 @@ public class AuthInterceptor implements HandlerInterceptor {
             return true;
         }
 
-        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Not logged in");
+        throw new UnauthorizedException();
     }
 }
