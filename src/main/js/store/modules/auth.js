@@ -27,6 +27,11 @@ const actions = {
     logout({ commit, dispatch }) {
         commit("setUser", null);
     },
+    async checkAuthStatus({ commit }) {
+        /** @type {AxiosResponse<*>} */
+        let response = await http.get("/auth/me");
+        commit("setUser", response.data);
+    },
 };
 
 const mutations = {

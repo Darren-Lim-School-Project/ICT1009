@@ -31,7 +31,7 @@ export default {
         ...mapState("auth", ["user"]),
     },
     methods: {
-        ...mapActions("auth", ["login", "logout"]),
+        ...mapActions("auth", ["login", "logout", "checkAuthStatus"]),
         logUserIn() {
             this.login({
                 email: "x",
@@ -39,6 +39,9 @@ export default {
             });
         },
     },
-    created() {},
+    created() {
+        this.checkAuthStatus()
+            .catch(() => this.logout());
+    },
 };
 </script>
