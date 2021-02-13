@@ -4,6 +4,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import moe.ksmz.rodentraid.Auth.AuthStatus;
+import moe.ksmz.rodentraid.Auth.UserService;
 import moe.ksmz.rodentraid.Models.Repositories.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class SmokeTest {
     @Autowired MockHttpSession session;
     @MockBean AuthStatus authStatus;
     @MockBean UserRepository userRepository;
-
+    @MockBean UserService userService;
     @Test
     void itWorks() throws Exception {
         this.http.perform(get("/")).andExpect(status().isOk());
