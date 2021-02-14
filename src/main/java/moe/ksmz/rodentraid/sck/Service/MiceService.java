@@ -4,6 +4,7 @@ import com.opencsv.bean.CsvToBeanBuilder;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import moe.ksmz.rodentraid.sck.Domain.Location;
@@ -31,16 +32,24 @@ public class MiceService implements MiceManager {
         log.info("Loaded {} mice", mice.size());
     }
 
+    @Override
+    public Optional<Mice> getMouse(String mouseName) {
+        return mice.stream().filter(mouse -> mouse.getName().equalsIgnoreCase(mouseName)).findAny();
+    }
+
+    @Override
     public List<Mice> allMiceForLocation(String location) {
         return allMiceForLocation(new Location(location));
     }
 
+    @Override
     public List<Mice> allMiceForLocation(Location location) {
         return mice.stream()
                 .filter(mouse -> mouse.getLocations().contains(location))
                 .collect(Collectors.toList());
     }
 
+    @Override
     public List<Mice> all() {
         return mice;
     }
