@@ -1,7 +1,7 @@
 package moe.ksmz.rodentraid.Auth;
 
+import java.io.Serial;
 import java.io.Serializable;
-import java.util.Optional;
 import moe.ksmz.rodentraid.Models.User;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
@@ -9,14 +9,20 @@ import org.springframework.web.context.annotation.SessionScope;
 @Component
 @SessionScope
 public class AuthStatus implements Serializable {
+    @Serial private static final long serialVersionUID = 42069L;
+
     private User currentUser;
 
     public void setCurrentUser(User user) {
         this.currentUser = user;
     }
 
-    public Optional<User> getCurrentUser() {
-        return Optional.ofNullable(currentUser);
+    public User getCurrentUser() {
+        if (currentUser == null) {
+            throw new UnauthorizedException();
+        }
+
+        return currentUser;
     }
 
     public boolean isLoggedIn() {
