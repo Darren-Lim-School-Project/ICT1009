@@ -2,7 +2,6 @@ package moe.ksmz.rodentraid.Api.Controller;
 
 import java.util.List;
 import java.util.Random;
-
 import moe.ksmz.rodentraid.Auth.AuthStatus;
 import moe.ksmz.rodentraid.Models.Hunt;
 import moe.ksmz.rodentraid.Models.Repositories.HuntRepository;
@@ -20,7 +19,8 @@ public class HuntController {
     private HuntRepository huntRepository;
     private MiceService miceService;
 
-    public HuntController(AuthStatus authStatus, HuntRepository huntRepository, MiceService miceService) {
+    public HuntController(
+            AuthStatus authStatus, HuntRepository huntRepository, MiceService miceService) {
         this.authStatus = authStatus;
         this.huntRepository = huntRepository;
         this.miceService = miceService;
