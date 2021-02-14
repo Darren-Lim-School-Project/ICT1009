@@ -23,7 +23,7 @@ public class AuthController {
 
     @GetMapping("/me")
     UserResponse me() {
-        var user = authStatus.getCurrentUser().get();
+        var user = authStatus.getCurrentUser();
 
         return UserResponse.fromUser(user);
     }
