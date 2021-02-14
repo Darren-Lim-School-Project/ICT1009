@@ -22,20 +22,13 @@ public class Mice {
     @CsvBindByName(column = "points")
     private Long points;
 
+    private Long weight;
+
     @CsvBindAndSplitByName(
             elementType = Location.class,
             splitOn = ",",
             converter = LocationCsvProcessor.class)
     private Set<Location> locations;
-
-    public Mice() {}
-
-    public Mice(String name, Long gold, Long points, Long power) {
-        this.name = name;
-        this.gold = gold;
-        this.points = points;
-        this.power = power;
-    }
 
     public String getName() {
         return name;
@@ -69,7 +62,19 @@ public class Mice {
         this.points = points;
     }
 
-    public Long getRandomWeight() {
-        return (new Faker()).number().numberBetween(1L, 100L);
+    public void setLocations(Set<Location> locations) {
+        this.locations = locations;
+    }
+
+    public Set<Location> getLocations() {
+        return locations;
+    }
+
+    public Long getWeight() {
+        if (this.weight == null) {
+            this.weight = (new Faker()).number().numberBetween(1L, 100L);
+        }
+
+        return this.weight;
     }
 }

@@ -1,21 +1,33 @@
 package moe.ksmz.rodentraid.sck.Domain;
 
-import java.util.List;
-import java.util.Set;
+import java.util.Objects;
 
 public class Location {
     private String name;
-    private Set<Mice> mice;
 
     public Location(String name) {
         this.name = name;
     }
 
-    public boolean hasMice(Mice mice) {
-        return this.mice.contains(mice);
+    public String getName() {
+        return name;
     }
 
-    public boolean hasMice(List<Mice> mice) {
-        return this.mice.containsAll(mice);
+    @Override
+    public String toString() {
+        return "Location{" + "name='" + name + '\'' + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Location location = (Location) o;
+        return name.equalsIgnoreCase(location.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
