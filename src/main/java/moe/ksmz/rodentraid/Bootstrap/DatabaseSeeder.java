@@ -2,9 +2,7 @@ package moe.ksmz.rodentraid.Bootstrap;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.github.javafaker.Faker;
-
 import java.util.ArrayList;
-
 import lombok.extern.slf4j.Slf4j;
 import moe.ksmz.rodentraid.Models.Repositories.UserRepository;
 import moe.ksmz.rodentraid.Models.User;
