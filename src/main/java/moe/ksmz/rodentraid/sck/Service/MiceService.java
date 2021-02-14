@@ -1,8 +1,8 @@
 package moe.ksmz.rodentraid.sck.Service;
 
 import com.opencsv.bean.CsvToBeanBuilder;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -25,7 +25,7 @@ public class MiceService implements MiceManager {
     @Override
     public void loadEntries() throws IOException {
         mice =
-                new CsvToBeanBuilder<Mice>(new FileReader(resourceFile.getFile()))
+                new CsvToBeanBuilder<Mice>(new InputStreamReader(resourceFile.getInputStream()))
                         .withType(Mice.class)
                         .build()
                         .parse();
