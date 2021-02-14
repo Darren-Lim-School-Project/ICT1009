@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import moe.ksmz.rodentraid.Auth.AuthStatus;
 import moe.ksmz.rodentraid.Auth.UserService;
 import moe.ksmz.rodentraid.Models.Repositories.UserRepository;
+import moe.ksmz.rodentraid.sck.Service.MiceService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -22,6 +23,7 @@ public class SmokeTest {
     @MockBean AuthStatus authStatus;
     @MockBean UserRepository userRepository;
     @MockBean UserService userService;
+    @MockBean MiceService miceService;
 
     @Test
     void itWorks() throws Exception {
