@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
-public class IndexController {
-    private MiceService miceService;
+public class LocationController {
+    private final MiceService miceService;
 
-    public IndexController(MiceService miceService) {
+    public LocationController(MiceService miceService) {
         this.miceService = miceService;
     }
 
