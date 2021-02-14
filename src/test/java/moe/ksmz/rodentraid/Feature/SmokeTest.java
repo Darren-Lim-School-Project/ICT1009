@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import moe.ksmz.rodentraid.Auth.AuthStatus;
 import moe.ksmz.rodentraid.Auth.UserService;
+import moe.ksmz.rodentraid.Models.Repositories.HuntRepository;
 import moe.ksmz.rodentraid.Models.Repositories.UserRepository;
 import moe.ksmz.rodentraid.sck.Service.MiceService;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,7 @@ public class SmokeTest {
     @Autowired MockMvc http;
     @Autowired MockHttpSession session;
     @MockBean AuthStatus authStatus;
+    @MockBean HuntRepository huntRepository;
     @MockBean UserRepository userRepository;
     @MockBean UserService userService;
     @MockBean MiceService miceService;
