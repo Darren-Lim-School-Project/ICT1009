@@ -22,6 +22,7 @@ public class SmokeTest {
     @MockBean AuthStatus authStatus;
     @MockBean UserRepository userRepository;
     @MockBean UserService userService;
+
     @Test
     void itWorks() throws Exception {
         this.http.perform(get("/")).andExpect(status().isOk());
