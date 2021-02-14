@@ -11,9 +11,8 @@ public class LocationService implements LocationManager {
     private boolean loaded = false;
 
     @Override
-    public List<Location> loadEntries() {
+    public void loadEntries() {
         loaded = true;
-        return null;
     }
 
     @Override

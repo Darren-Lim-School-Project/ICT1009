@@ -19,13 +19,12 @@ public class MiceService implements MiceManager {
     Resource resourceFile;
 
     @Override
-    public List<Mice> loadEntries() throws IOException {
+    public void loadEntries() throws IOException {
         miceList =
                 new CsvToBeanBuilder<Mice>(new FileReader(resourceFile.getFile()))
                         .withType(Mice.class)
                         .build()
                         .parse();
         loaded = true;
-        return null;
     }
 }
