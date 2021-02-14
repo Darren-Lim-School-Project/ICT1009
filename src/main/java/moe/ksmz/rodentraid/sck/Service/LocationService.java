@@ -8,12 +8,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class LocationService implements LocationManager {
-    private boolean loaded = false;
-
     @Override
-    public void loadEntries() {
-        loaded = true;
-    }
+    public void loadEntries() {}
 
     @Override
     public List<Location> canBeFoundIn(Mice mice) {

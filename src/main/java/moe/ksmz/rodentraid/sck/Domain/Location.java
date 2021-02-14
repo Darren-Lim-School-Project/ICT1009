@@ -7,6 +7,10 @@ public class Location {
     private String name;
     private Set<Mice> mice;
 
+    public Location(String name) {
+        this.name = name;
+    }
+
     public boolean hasMice(Mice mice) {
         return this.mice.contains(mice);
     }

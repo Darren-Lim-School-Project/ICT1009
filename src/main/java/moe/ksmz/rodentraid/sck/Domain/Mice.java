@@ -1,25 +1,34 @@
 package moe.ksmz.rodentraid.sck.Domain;
 
+import com.github.javafaker.Faker;
+import com.opencsv.bean.CsvBindAndSplitByName;
 import com.opencsv.bean.CsvBindByName;
+import java.util.Set;
+import lombok.ToString;
+import moe.ksmz.rodentraid.sck.Service.LocationCsvProcessor;
 
+@ToString
 public class Mice {
 
-    @CsvBindByName(column = "Mouse")
+    @CsvBindByName(column = "mouse")
     private String name;
 
-    @CsvBindByName(column = "Power")
+    @CsvBindByName(column = "power")
     private Long power;
 
-    @CsvBindByName(column = "Gold")
+    @CsvBindByName(column = "gold")
     private Long gold;
 
-    @CsvBindByName(column = "Points")
+    @CsvBindByName(column = "points")
     private Long points;
 
-    public Mice() {
-        /* Needs the default constructor for OpenCSV to work for some reason
-         *  So the variables can't be final ;-; */
-    }
+    @CsvBindAndSplitByName(
+            elementType = Location.class,
+            splitOn = ",",
+            converter = LocationCsvProcessor.class)
+    private Set<Location> locations;
+
+    public Mice() {}
 
     public Mice(String name, Long gold, Long points, Long power) {
         this.name = name;
@@ -60,28 +69,7 @@ public class Mice {
         this.points = points;
     }
 
-    @Override
-    public String toString() {
-        return "Mice{"
-                + "name='"
-                + name
-                + '\''
-                + ", power="
-                + power
-                + ", gold="
-                + gold
-                + ", points="
-                + points
-                + '}';
-    }
-
-    // TODO: finish
-    public boolean hasNonStandardEffectAgainst(TrapTypes trapType) {
-        return false;
-    }
-
-    // TODO: finish
-    public Long getEffectivenessAgainst(TrapTypes trapType) {
-        return 0L;
+    public Long getRandomWeight() {
+        return (new Faker()).number().numberBetween(1L, 100L);
     }
 }
