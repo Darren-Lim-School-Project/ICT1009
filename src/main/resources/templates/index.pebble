@@ -46,17 +46,6 @@
 </head>
 <body>
 <div id="app" v-cloak>
-  <p>
-  <div class="tabs is-centered">
-    <ul>
-      <router-link tag="li" to="/hunt"><a>Hunt</a></router-link>
-      <router-link tag="li" to="/status"><a>Status</a></router-link>
-    </ul>
-  </div>
-  </p>
-  <div class="container px-3">
-    <router-view></router-view>
-  </div>
 </div>
 <script src="{{ mix("/js/app.js") }}"></script>
 </body>

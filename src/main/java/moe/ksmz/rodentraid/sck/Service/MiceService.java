@@ -1,32 +1,56 @@
 package moe.ksmz.rodentraid.sck.Service;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.List;
-
 import com.opencsv.bean.CsvToBeanBuilder;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import lombok.extern.slf4j.Slf4j;
+import moe.ksmz.rodentraid.sck.Domain.Location;
 import moe.ksmz.rodentraid.sck.Domain.Mice;
 import moe.ksmz.rodentraid.sck.Service.Contracts.MiceManager;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
-import org.springframework.core.io.ResourceLoader;
 
 @Service
+@Slf4j
 public class MiceService implements MiceManager {
-    private boolean loaded = false;
-    private List<Mice> miceList;
-    @Value("classpath:mouse-power-effs1.csv")
+    private List<Mice> mice;
+
+    @Value("classpath:out.csv")
     Resource resourceFile;
 
     @Override
-    public List<Mice> loadEntries() throws FileNotFoundException {
-        miceList = new CsvToBeanBuilder<Mice>(new FileReader((File) resourceFile))
-                .withType(Mice.class)
-                .build()
-                .parse();
-        loaded = true;
-        return null;
+    public void loadEntries() throws IOException {
+        mice =
+                new CsvToBeanBuilder<Mice>(new InputStreamReader(resourceFile.getInputStream()))
+                        .withType(Mice.class)
+                        .build()
+                        .parse();
+        log.info("Loaded {} mice", mice.size());
+    }
+
+    @Override
+    public Optional<Mice> getMouse(String mouseName) {
+        return mice.stream().filter(mouse -> mouse.getName().equalsIgnoreCase(mouseName)).findAny();
+    }
+
+    @Override
+    public List<Mice> allMiceForLocation(String location) {
+        return allMiceForLocation(new Location(location));
+    }
+
+    @Override
+    public List<Mice> allMiceForLocation(Location location) {
+        return mice.stream()
+                .filter(mouse -> mouse.getLocations().contains(location))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Mice> all() {
+        return mice;
     }
 }

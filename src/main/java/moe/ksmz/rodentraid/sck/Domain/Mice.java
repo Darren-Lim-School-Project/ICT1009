@@ -1,39 +1,34 @@
 package moe.ksmz.rodentraid.sck.Domain;
 
+import com.github.javafaker.Faker;
+import com.opencsv.bean.CsvBindAndSplitByName;
 import com.opencsv.bean.CsvBindByName;
+import java.util.Set;
+import lombok.ToString;
+import moe.ksmz.rodentraid.sck.Service.LocationCsvProcessor;
 
+@ToString
 public class Mice {
 
-    @CsvBindByName(column = "Mouse")
+    @CsvBindByName(column = "mouse")
     private String name;
 
-    /* I don't know how to put this into the csv :P
-    private final Long weight;
-     */
-
-    @CsvBindByName(column = "Power")
+    @CsvBindByName(column = "power")
     private Long power;
 
-    @CsvBindByName(column = "Gold")
+    @CsvBindByName(column = "gold")
     private Long gold;
 
-    @CsvBindByName(column = "Points")
+    @CsvBindByName(column = "points")
     private Long points;
 
-    public Mice() {
-        /* Needs the default constructor for OpenCSV to work for some reason
-        *  So the variables can't be final ;-; */
-    }
+    private Long weight;
 
-    public Mice(String name, Long gold, Long points, Long power) {
-        this.name = name;
-        /*
-        this.weight = weight;
-         */
-        this.gold = gold;
-        this.points = points;
-        this.power = power;
-    }
+    @CsvBindAndSplitByName(
+            elementType = Location.class,
+            splitOn = ",",
+            converter = LocationCsvProcessor.class)
+    private Set<Location> locations;
 
     public String getName() {
         return name;
@@ -67,23 +62,19 @@ public class Mice {
         this.points = points;
     }
 
-    @Override
-    public String toString() {
-        return "Mice{" +
-                "name='" + name + '\'' +
-                ", power=" + power +
-                ", gold=" + gold +
-                ", points=" + points +
-                '}';
+    public void setLocations(Set<Location> locations) {
+        this.locations = locations;
     }
 
-    // TODO: finish
-    public boolean hasNonStandardEffectAgainst(TrapTypes trapType) {
-        return false;
+    public Set<Location> getLocations() {
+        return locations;
     }
 
-    // TODO: finish
-    public Long getEffectivenessAgainst(TrapTypes trapType) {
-        return 0L;
+    public Long getWeight() {
+        if (this.weight == null) {
+            this.weight = (new Faker()).number().numberBetween(1L, 100L);
+        }
+
+        return this.weight;
     }
 }

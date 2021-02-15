@@ -1,5 +1,6 @@
 package moe.ksmz.rodentraid.Bootstrap;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.github.javafaker.Faker;
 import java.util.ArrayList;
 import lombok.extern.slf4j.Slf4j;
@@ -23,12 +24,21 @@ public class DatabaseSeeder implements CommandLineRunner {
             return;
         }
 
+        var h = new User();
+        h.setName("x");
+        h.setPassword(BCrypt.withDefaults().hashToString(12, "secret".toCharArray()));
+        h.setEmail("x");
+        h.setPoints(1000L);
+        userRepository.save(h);
+
         var faker = new Faker();
         var users = new ArrayList<User>();
         for (var i = 0; i < 5; i++) {
             var user = new User();
             user.setName(faker.name().fullName());
+            user.setPassword(BCrypt.withDefaults().hashToString(12, "secret".toCharArray()));
             user.setEmail(faker.internet().safeEmailAddress());
+            user.setPoints(faker.number().numberBetween(100L, 10000L));
             users.add(user);
         }
 

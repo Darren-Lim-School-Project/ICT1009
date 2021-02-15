@@ -1,8 +1,7 @@
 package moe.ksmz.rodentraid.sck.Service.Contracts;
 
-import java.io.FileNotFoundException;
-import java.util.List;
+import java.io.IOException;
 
 public interface Loadable<T> {
-    List<T> loadEntries() throws FileNotFoundException;
+    void loadEntries() throws IOException;
 }

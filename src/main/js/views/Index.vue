@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="columns pt-3">
-            <div class="column is-9">
+            <div class="column is-12">
                 <section class="hero is-info welcome is-small">
                     <div class="hero-body">
                         <div class="container">
@@ -65,97 +65,6 @@
                                         class="table is-fullwidth is-striped"
                                     >
                                         <tbody>
-                                            <tr>
-                                                <td width="5%">
-                                                    <i class="fa fa-bell-o"></i>
-                                                </td>
-                                                <td>Lorum ipsum dolem aire</td>
-                                                <td class="level-right">
-                                                    <a
-                                                        class="button is-small is-primary"
-                                                        href="#"
-                                                        >Action</a
-                                                    >
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width="5%">
-                                                    <i class="fa fa-bell-o"></i>
-                                                </td>
-                                                <td>Lorum ipsum dolem aire</td>
-                                                <td class="level-right">
-                                                    <a
-                                                        class="button is-small is-primary"
-                                                        href="#"
-                                                        >Action</a
-                                                    >
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width="5%">
-                                                    <i class="fa fa-bell-o"></i>
-                                                </td>
-                                                <td>Lorum ipsum dolem aire</td>
-                                                <td class="level-right">
-                                                    <a
-                                                        class="button is-small is-primary"
-                                                        href="#"
-                                                        >Action</a
-                                                    >
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width="5%">
-                                                    <i class="fa fa-bell-o"></i>
-                                                </td>
-                                                <td>Lorum ipsum dolem aire</td>
-                                                <td class="level-right">
-                                                    <a
-                                                        class="button is-small is-primary"
-                                                        href="#"
-                                                        >Action</a
-                                                    >
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width="5%">
-                                                    <i class="fa fa-bell-o"></i>
-                                                </td>
-                                                <td>Lorum ipsum dolem aire</td>
-                                                <td class="level-right">
-                                                    <a
-                                                        class="button is-small is-primary"
-                                                        href="#"
-                                                        >Action</a
-                                                    >
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width="5%">
-                                                    <i class="fa fa-bell-o"></i>
-                                                </td>
-                                                <td>Lorum ipsum dolem aire</td>
-                                                <td class="level-right">
-                                                    <a
-                                                        class="button is-small is-primary"
-                                                        href="#"
-                                                        >Action</a
-                                                    >
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width="5%">
-                                                    <i class="fa fa-bell-o"></i>
-                                                </td>
-                                                <td>Lorum ipsum dolem aire</td>
-                                                <td class="level-right">
-                                                    <a
-                                                        class="button is-small is-primary"
-                                                        href="#"
-                                                        >Action</a
-                                                    >
-                                                </td>
-                                            </tr>
                                             <tr>
                                                 <td width="5%">
                                                     <i class="fa fa-bell-o"></i>
