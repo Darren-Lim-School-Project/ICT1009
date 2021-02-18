@@ -1,4 +1,5 @@
 import http from "@/http";
+import { capitalize } from "@/strings";
 
 const state = {
     user: null,
@@ -8,6 +9,12 @@ const getters = {
     signedIn(state) {
         return !!state.user;
     },
+    rankTitle(state) {
+        return capitalize(state.user?.rank?.rankTitle);
+    },
+    rankPercentage(state) {
+        return state.user?.rank?.percentage * 100;
+    }
 };
 
 const actions = {

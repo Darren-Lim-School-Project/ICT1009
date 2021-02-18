@@ -1,26 +1,46 @@
 <template>
     <b-navbar wrapper-class="container">
         <template slot="brand">
-            <b-navbar-item tag="router-link" :to="{ name: 'index' }"
-                >🐁
-            </b-navbar-item>
+            <b-navbar-item>🐁</b-navbar-item>
         </template>
+        <template slot="end"></template>
         <template slot="start">
-            <b-navbar-item> Rodent Raid</b-navbar-item>
-        </template>
-        <template slot="end">
-            <b-navbar-item>
+            <template v-if="signedIn">
+                <b-navbar-item>
+                    <div>
+                        <span>
+                            {{ `${rankTitle} (${rankPercentage}%)` }}
+                        </span>
+                        <br />
+                        <b-progress
+                            style="width: 100px"
+                            type="is-info"
+                            :value="rankPercentage"
+                            :title="`${rankPercentage}%`"
+                        />
+                    </div>
+                </b-navbar-item>
+                <b-navbar-item>
+                    <div>
+                        <span>
+                            <b-icon icon="cash"></b-icon> {{ user.gold }}
+                        </span>
+                        <br />
+                        <span>
+                            <b-icon icon="star-four-points"></b-icon> {{ user.rank.points }}
+                        </span>
+                    </div>
+                </b-navbar-item>
+            </template>
+            <b-navbar-item v-else>
                 <b-button @click="logUserIn">Login</b-button>
-            </b-navbar-item>
-            <b-navbar-item>
-                <br />
             </b-navbar-item>
         </template>
     </b-navbar>
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
 
 export default {
     name: "Navbar",
@@ -29,6 +49,7 @@ export default {
     },
     computed: {
         ...mapState("auth", ["user"]),
+        ...mapGetters("auth", ["rankTitle", "rankPercentage", "signedIn"]),
     },
     methods: {
         ...mapActions("auth", ["login", "logout", "checkAuthStatus"]),
