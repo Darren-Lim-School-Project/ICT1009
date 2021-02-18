@@ -36,6 +36,8 @@ public class User implements Serializable {
     @Column(nullable = false)
     private String password;
 
+    private Long gold;
+
     private Long points;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -60,11 +62,12 @@ public class User implements Serializable {
     @OrderBy("createdAt DESC")
     private List<Hunt> hunts = new ArrayList<>();
 
-    public User(Long id, String name, String email, String password, Long points) {
+    public User(Long id, String name, String email, String password, Long gold, Long points) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.gold = gold;
         this.points = points;
     }
 

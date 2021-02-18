@@ -10,9 +10,11 @@ import moe.ksmz.rodentraid.sck.Domain.Rank;
 public class UserResponse {
     private final String name;
     private final String email;
+    private final Long gold;
     private final Rank rank;
 
     public static UserResponse fromUser(User user) {
-        return new UserResponse(user.getName(), user.getEmail(), user.getCurrentRank());
+        return new UserResponse(
+                user.getName(), user.getEmail(), user.getGold(), user.getCurrentRank());
     }
 }

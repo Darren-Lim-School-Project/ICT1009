@@ -29,6 +29,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         h.setPassword(BCrypt.withDefaults().hashToString(12, "secret".toCharArray()));
         h.setEmail("x");
         h.setPoints(1000L);
+        h.setGold(10000L);
         userRepository.save(h);
 
         var faker = new Faker();
@@ -39,6 +40,7 @@ public class DatabaseSeeder implements CommandLineRunner {
             user.setPassword(BCrypt.withDefaults().hashToString(12, "secret".toCharArray()));
             user.setEmail(faker.internet().safeEmailAddress());
             user.setPoints(faker.number().numberBetween(100L, 1000000L));
+            user.setGold(faker.number().numberBetween(100L, 1000000L));
             users.add(user);
         }
 
