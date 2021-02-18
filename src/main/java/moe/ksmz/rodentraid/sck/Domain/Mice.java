@@ -22,8 +22,6 @@ public class Mice {
     @CsvBindByName(column = "points")
     private Long points;
 
-    private Long weight;
-
     @CsvBindAndSplitByName(
             elementType = Location.class,
             splitOn = ",",
@@ -70,11 +68,7 @@ public class Mice {
         return locations;
     }
 
-    public Long getWeight() {
-        if (this.weight == null) {
-            this.weight = (new Faker()).number().numberBetween(1L, 100L);
-        }
-
-        return this.weight;
+    public Long getRandWeight() {
+        return (new Faker()).number().numberBetween(1L, 100L);
     }
 }

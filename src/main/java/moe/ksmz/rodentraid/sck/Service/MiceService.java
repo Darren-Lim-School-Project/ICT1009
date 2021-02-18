@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import moe.ksmz.rodentraid.sck.Domain.Location;
@@ -35,6 +36,24 @@ public class MiceService implements MiceManager {
     @Override
     public Optional<Mice> getMouse(String mouseName) {
         return mice.stream().filter(mouse -> mouse.getName().equalsIgnoreCase(mouseName)).findAny();
+    }
+
+    @Override
+    public Optional<Mice> getRandomMiceForLocation(String location) {
+        return getRandomMiceForLocation(new Location(location));
+    }
+
+    @Override
+    public Optional<Mice> getRandomMiceForLocation(Location location) {
+        var mice = allMiceForLocation(location);
+        if (mice.size() < 1) {
+            return Optional.empty();
+        }
+
+        var rand = new Random();
+        var randMouse = mice.get(rand.nextInt(mice.size()));
+
+        return Optional.of(randMouse);
     }
 
     @Override
