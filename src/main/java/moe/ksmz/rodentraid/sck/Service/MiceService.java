@@ -33,16 +33,19 @@ public class MiceService implements MiceManager {
         log.info("Loaded {} mice", mice.size());
     }
 
+    /** {@inheritDoc} */
     @Override
     public Optional<Mice> getMouse(String mouseName) {
         return mice.stream().filter(mouse -> mouse.getName().equalsIgnoreCase(mouseName)).findAny();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Optional<Mice> getRandomMiceForLocation(String location) {
         return getRandomMiceForLocation(new Location(location));
     }
 
+    /** {@inheritDoc} */
     @Override
     public Optional<Mice> getRandomMiceForLocation(Location location) {
         var mice = allMiceForLocation(location);
@@ -56,11 +59,13 @@ public class MiceService implements MiceManager {
         return Optional.of(randMouse);
     }
 
+    /** {@inheritDoc} */
     @Override
     public List<Mice> allMiceForLocation(String location) {
         return allMiceForLocation(new Location(location));
     }
 
+    /** {@inheritDoc} */
     @Override
     public List<Mice> allMiceForLocation(Location location) {
         return mice.stream()
@@ -68,6 +73,7 @@ public class MiceService implements MiceManager {
                 .collect(Collectors.toList());
     }
 
+    /** {@inheritDoc} */
     @Override
     public List<Mice> all() {
         return mice;
