@@ -20,6 +20,15 @@ server:
 spring:
   config:
     activate:
+      on-profile: production
+server:
+  error:
+    include-stacktrace: never
+
+---
+spring:
+  config:
+    activate:
       on-profile: oic
   redis:
     port: 6379
