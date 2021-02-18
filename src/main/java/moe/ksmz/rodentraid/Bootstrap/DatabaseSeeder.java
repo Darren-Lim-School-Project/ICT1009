@@ -38,7 +38,7 @@ public class DatabaseSeeder implements CommandLineRunner {
             user.setName(faker.name().fullName());
             user.setPassword(BCrypt.withDefaults().hashToString(12, "secret".toCharArray()));
             user.setEmail(faker.internet().safeEmailAddress());
-            user.setPoints(faker.number().numberBetween(100L, 10000L));
+            user.setPoints(faker.number().numberBetween(100L, 1000000L));
             users.add(user);
         }
 
