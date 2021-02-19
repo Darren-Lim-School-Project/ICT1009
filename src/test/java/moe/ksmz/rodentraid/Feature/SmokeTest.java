@@ -7,7 +7,8 @@ import moe.ksmz.rodentraid.Auth.AuthStatus;
 import moe.ksmz.rodentraid.Auth.UserService;
 import moe.ksmz.rodentraid.Models.Repositories.HuntRepository;
 import moe.ksmz.rodentraid.Models.Repositories.UserRepository;
-import moe.ksmz.rodentraid.sck.Service.MiceService;
+import moe.ksmz.rodentraid.sck.Service.Contracts.HuntManager;
+import moe.ksmz.rodentraid.sck.Service.Contracts.MiceManager;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -25,7 +26,8 @@ public class SmokeTest {
     @MockBean HuntRepository huntRepository;
     @MockBean UserRepository userRepository;
     @MockBean UserService userService;
-    @MockBean MiceService miceService;
+    @MockBean MiceManager miceManager;
+    @MockBean HuntManager huntManager;
 
     @Test
     void itWorks() throws Exception {
