@@ -78,6 +78,22 @@ public class Mice {
         return locations;
     }
 
+    public void setPhysical(Long physical) {
+        this.physical = physical;
+    }
+
+    public void setTactical(Long tactical) {
+        this.tactical = tactical;
+    }
+
+    public void setShadow(Long shadow) {
+        this.shadow = shadow;
+    }
+
+    public void setHydro(Long hydro) {
+        this.hydro = hydro;
+    }
+
     public Long getEffectivenessFor(TrapTypes type) {
         return switch (type) {
             case PHYSICAL -> physical;
