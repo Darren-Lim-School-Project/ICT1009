@@ -2,9 +2,7 @@ package moe.ksmz.rodentraid.sck.Domain;
 
 import com.github.javafaker.Faker;
 import com.opencsv.bean.*;
-
 import java.util.Set;
-
 import lombok.ToString;
 import moe.ksmz.rodentraid.sck.Service.LocationCsvProcessor;
 
@@ -14,14 +12,11 @@ public class Mice {
     @CsvBindByName(column = "mouse")
     private String name;
 
-    @CsvBindByName
-    private Long power;
+    @CsvBindByName private Long power;
 
-    @CsvBindByName
-    private Long gold;
+    @CsvBindByName private Long gold;
 
-    @CsvBindByName
-    private Long points;
+    @CsvBindByName private Long points;
 
     @CsvBindAndSplitByName(
             elementType = Location.class,
@@ -29,14 +24,10 @@ public class Mice {
             converter = LocationCsvProcessor.class)
     private Set<Location> locations;
 
-    @CsvBindByName
-    private Long physical;
-    @CsvBindByName
-    private Long tactical;
-    @CsvBindByName
-    private Long shadow;
-    @CsvBindByName
-    private Long hydro;
+    @CsvBindByName private Long physical;
+    @CsvBindByName private Long tactical;
+    @CsvBindByName private Long shadow;
+    @CsvBindByName private Long hydro;
 
     public String getName() {
         return name;

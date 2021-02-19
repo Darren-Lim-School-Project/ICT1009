@@ -1,12 +1,11 @@
 package moe.ksmz.rodentraid.sck.Service;
 
+import java.util.List;
+import java.util.Optional;
 import moe.ksmz.rodentraid.Models.Hunt;
 import moe.ksmz.rodentraid.Models.Repositories.HuntRepository;
 import moe.ksmz.rodentraid.sck.Service.Contracts.HuntManager;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class HuntService implements HuntManager {

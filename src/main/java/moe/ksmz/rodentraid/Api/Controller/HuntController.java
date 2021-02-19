@@ -1,7 +1,6 @@
 package moe.ksmz.rodentraid.Api.Controller;
 
 import java.util.List;
-
 import moe.ksmz.rodentraid.Auth.AuthStatus;
 import moe.ksmz.rodentraid.Models.Hunt;
 import moe.ksmz.rodentraid.Models.Repositories.HuntRepository;
@@ -22,7 +21,10 @@ public class HuntController {
     private final HuntManager huntService;
 
     public HuntController(
-            AuthStatus authStatus, HuntRepository huntRepository, MiceManager miceService, HuntManager huntService) {
+            AuthStatus authStatus,
+            HuntRepository huntRepository,
+            MiceManager miceService,
+            HuntManager huntService) {
         this.authStatus = authStatus;
         this.huntRepository = huntRepository;
         this.miceService = miceService;
@@ -57,5 +59,4 @@ public class HuntController {
     ResponseEntity<Hunt> last() {
         return ResponseEntity.of(huntService.getLatestHunt(authStatus.id()));
     }
-
 }
