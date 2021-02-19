@@ -14,7 +14,7 @@ const getters = {
     },
     rankPercentage(state) {
         return state.user?.rank?.percentage * 100;
-    }
+    },
 };
 
 const actions = {
@@ -31,13 +31,24 @@ const actions = {
 
         commit("setUser", response.data);
     },
-    logout({ commit, dispatch }) {
+    logout({ commit }) {
         commit("setUser", null);
     },
     async checkAuthStatus({ commit }) {
         /** @type {AxiosResponse<*>} */
-        let response = await http.get("/auth/me");
-        commit("setUser", response.data);
+        try {
+            let response = await http.get("/auth/me");
+            commit("setUser", response.data);
+        } catch (e) {
+            // user not logged in
+            if (e.response.status === 401) {
+                commit("setUser", null);
+                return;
+            }
+
+            // something else went wrong, bubble it up
+            throw e;
+        }
     },
 };
 

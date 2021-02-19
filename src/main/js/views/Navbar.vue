@@ -3,9 +3,8 @@
         <template slot="brand">
             <b-navbar-item>🐁</b-navbar-item>
         </template>
-        <template slot="end"></template>
         <template slot="start">
-            <template v-if="signedIn">
+            <template>
                 <b-navbar-item>
                     <div>
                         <span>
@@ -27,13 +26,16 @@
                         </span>
                         <br />
                         <span>
-                            <b-icon icon="star-four-points"></b-icon> {{ user.rank.points }}
+                            <b-icon icon="star-four-points"></b-icon>
+                            {{ user.rank.points }}
                         </span>
                     </div>
                 </b-navbar-item>
             </template>
-            <b-navbar-item v-else>
-                <b-button @click="logUserIn">Login</b-button>
+        </template>
+        <template slot="end">
+            <b-navbar-item>
+                <b-button @click="logout">Logout</b-button>
             </b-navbar-item>
         </template>
     </b-navbar>
@@ -52,17 +54,7 @@ export default {
         ...mapGetters("auth", ["rankTitle", "rankPercentage", "signedIn"]),
     },
     methods: {
-        ...mapActions("auth", ["login", "logout", "checkAuthStatus"]),
-        logUserIn() {
-            this.login({
-                email: "x",
-                password: "secret",
-            });
-        },
-    },
-    created() {
-        this.checkAuthStatus()
-            .catch(() => this.logout());
+        ...mapActions("auth", ["logout", "checkAuthStatus"]),
     },
 };
 </script>
