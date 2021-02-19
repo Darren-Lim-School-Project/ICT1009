@@ -31,7 +31,8 @@ const actions = {
 
         commit("setUser", response.data);
     },
-    logout({ commit }) {
+    async logout({ commit }) {
+        await http.post("/auth/logout");
         commit("setUser", null);
     },
     async checkAuthStatus({ commit }) {

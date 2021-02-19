@@ -1,5 +1,6 @@
 package moe.ksmz.rodentraid.Api.Controller;
 
+import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import moe.ksmz.rodentraid.Auth.AuthStatus;
@@ -55,5 +56,13 @@ public class AuthController {
         authStatus.setCurrentUser(user.get());
 
         return ResponseEntity.ok(UserResponse.fromUser(user.get()));
+    }
+
+    @PostMapping("/logout")
+    ResponseEntity<?> logout(HttpServletRequest request) {
+        var session = request.getSession();
+        session.invalidate();
+
+        return ResponseEntity.status(200).build();
     }
 }
