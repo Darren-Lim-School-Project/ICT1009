@@ -41,6 +41,7 @@
                                 >
                                     Login
                                     <i class="mdi mdi-login"></i>
+                                    <b-loading v-model="state.loading"></b-loading>
                                 </button>
                             </form>
                         </div>
@@ -58,6 +59,9 @@ export default {
     name: "Login",
     data() {
         return {
+            state: {
+                loading: false,
+            },
             email: "",
             password: "",
         };
@@ -65,6 +69,7 @@ export default {
     methods: {
         ...mapActions("auth", ["login"]),
         async attemptLogin() {
+            this.state.loading = true;
             try {
                 await this.login({ email: this.email, password: this.password });
             } catch (e) {
@@ -73,12 +78,15 @@ export default {
                     this.$buefy.toast.open({
                         duration: 5000,
                         message: `<b>Invalid Credentials</b>`,
-                        position: 'is-top',
-                        type: 'is-danger'
-                    })
+                        position: "is-top",
+                        type: "is-danger",
+                    });
                 }
+            } finally {
+                this.state.loading = false;
             }
+
         },
-    }
+    },
 };
 </script>

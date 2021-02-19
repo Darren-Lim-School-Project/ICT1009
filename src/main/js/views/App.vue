@@ -1,5 +1,6 @@
 <template>
     <div>
+        <b-loading v-model="state.loading"></b-loading>
         <template v-if="signedIn">
             <Navbar />
             <div class="tabs is-centered">
@@ -19,9 +20,7 @@
                 <router-view></router-view>
             </div>
         </template>
-        <template v-else>
-            <Login />
-        </template>
+        <Login v-else />
     </div>
 </template>
 <script>
@@ -32,15 +31,25 @@ import Login from "@/views/Login";
 export default {
     name: "App",
     components: { Navbar, Login },
+    data() {
+        return {
+            state: { loading: true },
+        };
+    },
     computed: {
         ...mapGetters("auth", ["signedIn"]),
     },
     methods: {
-        ...mapActions("auth", ["checkAuthStatus"])
+        ...mapActions("auth", ["checkAuthStatus"]),
     },
-    created() {
-        this.checkAuthStatus()
-            .catch(() => this.logout());
+    async created() {
+        try {
+            await this.checkAuthStatus();
+        } catch (e) {
+            await this.logout();
+        } finally {
+            this.state.loading = false;
+        }
     },
 };
 </script>
