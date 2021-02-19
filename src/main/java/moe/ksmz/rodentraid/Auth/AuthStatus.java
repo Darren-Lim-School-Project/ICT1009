@@ -25,6 +25,10 @@ public class AuthStatus implements Serializable {
         return currentUser;
     }
 
+    public Long id() {
+        return getCurrentUser().getId();
+    }
+
     public boolean isLoggedIn() {
         return currentUser != null;
     }

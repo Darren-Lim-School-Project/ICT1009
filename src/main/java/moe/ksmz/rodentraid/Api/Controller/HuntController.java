@@ -1,9 +1,11 @@
 package moe.ksmz.rodentraid.Api.Controller;
 
 import java.util.List;
+
 import moe.ksmz.rodentraid.Auth.AuthStatus;
 import moe.ksmz.rodentraid.Models.Hunt;
 import moe.ksmz.rodentraid.Models.Repositories.HuntRepository;
+import moe.ksmz.rodentraid.sck.Service.Contracts.HuntManager;
 import moe.ksmz.rodentraid.sck.Service.Contracts.MiceManager;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,12 +19,19 @@ public class HuntController {
     private final AuthStatus authStatus;
     private final HuntRepository huntRepository;
     private final MiceManager miceService;
+    private final HuntManager huntService;
 
     public HuntController(
-            AuthStatus authStatus, HuntRepository huntRepository, MiceManager miceService) {
+            AuthStatus authStatus, HuntRepository huntRepository, MiceManager miceService, HuntManager huntService) {
         this.authStatus = authStatus;
         this.huntRepository = huntRepository;
         this.miceService = miceService;
+        this.huntService = huntService;
+    }
+
+    @GetMapping({"", "/"})
+    ResponseEntity<List<Hunt>> all() {
+        return ResponseEntity.of(huntService.getAllHunts(authStatus.id()));
     }
 
     @GetMapping("/newHunt/{location}")
@@ -46,15 +55,7 @@ public class HuntController {
 
     @GetMapping("/latest")
     ResponseEntity<Hunt> last() {
-        return ResponseEntity.of(
-                huntRepository.findFirstByUserIdOrderByCreatedAtDesc(
-                        authStatus.getCurrentUser().getId()));
+        return ResponseEntity.of(huntService.getLatestHunt(authStatus.id()));
     }
 
-    @GetMapping({"", "/"})
-    ResponseEntity<List<Hunt>> all() {
-        return ResponseEntity.of(
-                huntRepository.findAllByUserIdOrderByCreatedAtDesc(
-                        authStatus.getCurrentUser().getId()));
-    }
 }
