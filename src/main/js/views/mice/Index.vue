@@ -30,6 +30,7 @@
                 ></b-input>
             </b-field>
         </div>
+        <b-loading :active="mice.length <= 0"></b-loading>
         <div v-if="mice.length > 0">
             <div class="columns" v-for="(slice, index) in chunk(filteredMice, 4)" :key="index">
                 <div class="column" v-for="(row, j) in slice" :key="j">
