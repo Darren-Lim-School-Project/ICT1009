@@ -14,8 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebMvcConfig implements WebMvcConfigurer {
     private final AuthInterceptor authInterceptor;
 
-    public WebMvcConfig(AuthInterceptor authInterceptor) {
-        this.authInterceptor = authInterceptor;
+    public WebMvcConfig(AuthInterceptor authInterceptor) { this.authInterceptor = authInterceptor;
     }
 
     @Bean
@@ -36,6 +35,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/{x:[\\w\\-]+}").setViewName("forward:/");
         // Multi-level directory path, need to exclude "api" on the first part of the path
         registry.addViewController("/{x:^(?!api$).*$}/**/{y:[\\w\\-]+}").setViewName("forward:/");
+        registry.addViewController("/{x:^(?!socks$).*$}/**/{y:[\\w\\-]+}").setViewName("forward:/");
     }
 
     @Override
@@ -47,6 +47,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authInterceptor)
                 .addPathPatterns("/api/**")
-                .excludePathPatterns("/api/auth/login", "/api/auth/forceLogin");
+                .excludePathPatterns("/api/auth/login", "/api/auth/forceLogin", "/socks");
     }
 }
