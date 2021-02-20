@@ -1,5 +1,6 @@
 package moe.ksmz.rodentraid.sck.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.javafaker.Faker;
 import com.opencsv.bean.*;
 import java.util.Set;
@@ -7,6 +8,7 @@ import lombok.ToString;
 import moe.ksmz.rodentraid.sck.Service.LocationCsvProcessor;
 
 @ToString
+@JsonIgnoreProperties("randWeight")
 public class Mice {
 
     @CsvBindByName(column = "mouse")
