@@ -1,5 +1,6 @@
 package moe.ksmz.rodentraid.Api.Controller;
 
+import java.util.List;
 import moe.ksmz.rodentraid.sck.Domain.Mice;
 import moe.ksmz.rodentraid.sck.Service.Contracts.MiceManager;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,11 @@ public class MiceController {
 
     public MiceController(MiceManager miceManager) {
         this.miceManager = miceManager;
+    }
+
+    @GetMapping({"", "/"})
+    ResponseEntity<List<Mice>> all() {
+        return ResponseEntity.ok(miceManager.all());
     }
 
     @GetMapping("/{name}")
