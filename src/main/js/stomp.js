@@ -1,14 +1,41 @@
 import webstomp from "webstomp-client";
 
-const stompClient = webstomp.client("ws://localhost:8080/chat");
-stompClient.connect({}, () => {
-    console.log("connected");
-    stompClient.subscribe("/topic/messages", (x) => {
-        console.log(x);
-        x.ack();
-    });
-});
+export class SocketClient {
+    /**
+     * @param {string} address
+     * @param {boolean} debug
+     */
+    constructor(address = "ws://localhost:8080", debug = false) {
+        this.stompClient = webstomp.client(`${address}/socks`, {
+            debug,
+        });
+        this.stompClient.connect(
+            {},
+            () => console.log(`Connected to ${address}`),
+            (error) => {
+                throw new Error(
+                    `Failed to establish connection to "${address}": ${error.toString()}`
+                );
+            }
+        );
+    }
 
-window.sendit = () => {
-    stompClient.send("/app/chat", JSON.stringify({ from: "me", text: "lmao" }));
-};
+    /**
+     * @param {string} topic
+     *  @param {function} callback
+     */
+    listen(topic, callback) {
+        this.stompClient.subscribe(`/topic/${topic}`, (response) => {
+            callback(response);
+            response.ack();
+        });
+    }
+
+    /**
+     * @param {string} endpoint
+     * @param body
+     */
+    broadcast(endpoint, body) {
+        this.stompClient.send(`/app/${endpoint}`, JSON.stringify(body));
+    }
+}
