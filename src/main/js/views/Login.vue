@@ -41,7 +41,9 @@
                                 >
                                     Login
                                     <i class="mdi mdi-login"></i>
-                                    <b-loading v-model="state.loading"></b-loading>
+                                    <b-loading
+                                        v-model="state.loading"
+                                    ></b-loading>
                                 </button>
                             </form>
                         </div>
