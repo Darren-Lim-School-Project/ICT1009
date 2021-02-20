@@ -87,11 +87,12 @@ public class Mice {
 
     public Long getEffectivenessFor(TrapTypes type) {
         return switch (type) {
-            case PHYSICAL -> physical;
-            case TACTICAL -> tactical;
-            case SHADOW -> shadow;
-            case HYDRO -> hydro;
-        } / 100;
+                    case PHYSICAL -> physical;
+                    case TACTICAL -> tactical;
+                    case SHADOW -> shadow;
+                    case HYDRO -> hydro;
+                }
+                / 100;
     }
 
     public Long getRandWeight() {
