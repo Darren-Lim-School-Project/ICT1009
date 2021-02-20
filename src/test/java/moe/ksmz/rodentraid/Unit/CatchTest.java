@@ -9,11 +9,12 @@ public class CatchTest {
     void attemptCatch() {
         var m = new Mice();
         m.setName("test mice");
-        m.setPower(100L);
+        m.setPower(2300L);
+        m.setPhysical(100L);
         var c = new Cat("test cat", 300L,1L, 1L, 1, TrapTypes.PHYSICAL);
         var b = new Base("test base", 300L, 1L, 1L, 1);
 
         var wep = new Weapon(c, b);
-        wep.attemptCatch(m);
+        System.out.println("AttempCatch: " + wep.attemptCatch(m));
     }
 }

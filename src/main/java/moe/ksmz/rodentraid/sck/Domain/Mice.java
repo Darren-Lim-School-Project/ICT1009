@@ -91,7 +91,7 @@ public class Mice {
             case TACTICAL -> tactical;
             case SHADOW -> shadow;
             case HYDRO -> hydro;
-        };
+        } / 100;
     }
 
     public Long getRandWeight() {
