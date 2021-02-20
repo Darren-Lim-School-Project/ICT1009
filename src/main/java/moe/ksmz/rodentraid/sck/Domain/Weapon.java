@@ -1,7 +1,7 @@
 package moe.ksmz.rodentraid.sck.Domain;
 
 public class Weapon {
-    private final Cat cat;
+    private final Cat cat; // Trap
     private final Base base;
 
     public Weapon(Cat cat, Base base) {
@@ -21,10 +21,17 @@ public class Weapon {
 
     // TODO: finish
     public boolean shouldBeCaught(Mice mice) {
-        return false;
-        //        if (mice.getPower() > totalTrapPower()) {
-        //
-        //        }
+
+        var micePower = mice.getPower();
+        var adjustedTrapPower = mice.getEffectivenessFor(cat.getType()) * totalTrapPower();
+
+        var roll = Math.random();
+
+        if (micePower > adjustedTrapPower) {
+            return (roll > 0.1);
+        } else {
+            return (roll <= 0.1);
+        }
     }
 
     public boolean feelingLucky(Long luck) {

@@ -17,4 +17,8 @@ public class Cat extends AbstractTrap {
     public Long getLuck() {
         return luck * 2;
     }
+
+    public TrapTypes getType() {
+        return type;
+    }
 }

@@ -28,7 +28,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         h.setName("x");
         h.setPassword(BCrypt.withDefaults().hashToString(12, "secret".toCharArray()));
         h.setEmail("x");
-        h.setPoints(1000L);
+        h.setPoints(100000L);
         h.setGold(10000L);
         userRepository.save(h);
 
