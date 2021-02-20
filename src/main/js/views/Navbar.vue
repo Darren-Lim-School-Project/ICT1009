@@ -20,22 +20,22 @@
                     </div>
                 </b-navbar-item>
                 <b-navbar-item>
-                    <div>
-                        <span>
-                            <b-icon icon="cash"></b-icon> {{ user.gold }}
+                    <span class="icon-text">
+                        <span class="icon">
+                            <i class="mdi mdi-cash"></i>
                         </span>
+                        <span>{{ user.gold }}</span>
                         <br />
-                        <span>
-                            <b-icon icon="star-four-points"></b-icon>
-                            {{ user.rank.points }}
+                        <span class="icon">
+                            <i class="mdi mdi-star-four-points"></i>
                         </span>
-                    </div>
+                        <span>{{ user.rank.points }}</span>
+                    </span>
                 </b-navbar-item>
             </template>
         </template>
         <template slot="end">
-            <b-navbar-item>
-                <b-button @click="logout">Logout</b-button>
+            <b-navbar-item><b-button @click="logout">Logout</b-button>
             </b-navbar-item>
         </template>
     </b-navbar>

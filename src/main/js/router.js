@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
-const withPrefix = (prefix, routes) => {
+const prefix = (prefix, routes) => {
     return routes.map((route) => {
         route.path = `/${prefix}${route.path}`;
         route.name = `${prefix}.${route.name}`;
@@ -18,7 +18,10 @@ const routes = [
         name: "index",
         component: require("@/views/Index").default,
     },
-    ...withPrefix("/hunts", [
+    ...prefix("mice", [
+        { path: "/", name: "index", component: require("@/views/mice/Index").default }
+    ]),
+    ...prefix("hunts", [
         {
             path: "/",
             name: "index",
