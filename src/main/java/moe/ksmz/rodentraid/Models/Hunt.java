@@ -10,6 +10,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import moe.ksmz.rodentraid.sck.Domain.CatchState;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -29,6 +30,8 @@ public class Hunt implements Serializable {
 
     @Column(nullable = false)
     private Long weight;
+
+    private CatchState catchState;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
