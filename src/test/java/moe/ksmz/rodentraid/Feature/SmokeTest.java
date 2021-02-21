@@ -8,6 +8,7 @@ import moe.ksmz.rodentraid.Auth.UserService;
 import moe.ksmz.rodentraid.Models.Repositories.HuntRepository;
 import moe.ksmz.rodentraid.Models.Repositories.UserRepository;
 import moe.ksmz.rodentraid.sck.Service.Contracts.HuntManager;
+import moe.ksmz.rodentraid.sck.Service.Contracts.LocationManager;
 import moe.ksmz.rodentraid.sck.Service.Contracts.MiceManager;
 import moe.ksmz.rodentraid.sck.Service.Contracts.TrapManager;
 import org.junit.jupiter.api.Test;
@@ -30,7 +31,8 @@ public class SmokeTest {
     @MockBean MiceManager miceManager;
     @MockBean HuntManager huntManager;
     @MockBean TrapManager trapManager;
-    
+    @MockBean LocationManager locationManager;
+
     @Test
     void itWorks() throws Exception {
         this.http.perform(get("/")).andExpect(status().isOk());

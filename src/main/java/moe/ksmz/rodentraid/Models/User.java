@@ -44,6 +44,8 @@ public class User implements Serializable {
 
     private String base;
 
+    private String location;
+
     @Temporal(TemporalType.TIMESTAMP)
     protected Date createdAt;
 

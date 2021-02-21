@@ -1,6 +1,7 @@
 package moe.ksmz.rodentraid.Auth;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import java.util.List;
 import java.util.Optional;
 import moe.ksmz.rodentraid.Models.Repositories.UserRepository;
 import moe.ksmz.rodentraid.Models.User;
@@ -12,6 +13,10 @@ public class UserService {
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    public List<User> getUsers(List<Long> IDs) {
+        return userRepository.findAllById(IDs);
     }
 
     public Optional<User> attemptLogin(String email, String password) {

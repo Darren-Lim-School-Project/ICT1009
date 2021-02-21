@@ -9,8 +9,8 @@
                     <router-link tag="li" to="/travel"
                         ><a>Travel</a></router-link
                     >
-                    <router-link tag="li" to="/inventory"
-                        ><a>Inventory</a></router-link
+                    <router-link tag="li" to="/party"
+                        ><a>Party</a></router-link
                     >
                     <router-link tag="li" to="/shops"><a>Shops</a></router-link>
                     <router-link tag="li" to="/mice"><a>Mice</a></router-link>
@@ -41,10 +41,14 @@ export default {
     },
     methods: {
         ...mapActions("auth", ["checkAuthStatus"]),
+        async partyListener() {
+
+        },
     },
     async created() {
         try {
             await this.checkAuthStatus();
+            await this.partyListener();
         } catch (e) {
             await this.logout();
         } finally {

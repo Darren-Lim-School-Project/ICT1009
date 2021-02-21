@@ -1,5 +1,6 @@
 package moe.ksmz.rodentraid.Api.Controller;
 
+import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,9 +32,10 @@ public class AuthController {
         return UserResponse.fromUser(user, trapManager.getWeaponFor(user));
     }
 
-    @GetMapping("/forceLogin")
-    ResponseEntity<?> forceLogin() {
-        var user = userRepository.findById(1L);
+    @GetMapping({"/forceLogin", "/forceLogin/{id}"})
+    ResponseEntity<?> forceLogin(@PathVariable Optional<Long> id) {
+        var user = userRepository.findById(id.orElse(1L));
+
         if (user.isEmpty()) {
             log.error("failed to force login id: {}", 1);
 
