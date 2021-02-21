@@ -24,15 +24,18 @@ public class DatabaseSeeder implements CommandLineRunner {
             return;
         }
 
-        var h = new User();
-        h.setName("x");
-        h.setPassword(BCrypt.withDefaults().hashToString(12, "secret".toCharArray()));
-        h.setEmail("x");
-        h.setPoints(100000L);
-        h.setGold(10000L);
-        h.setTrap("High Tension Spring");
-        h.setBase("Wooden Base with Target");
-        userRepository.save(h);
+        for (var name : new String[] {"a", "b", "c", "x"}) {
+            var h = new User();
+            h.setName(name);
+            h.setPassword(BCrypt.withDefaults().hashToString(12, "secret".toCharArray()));
+            h.setEmail(name);
+            h.setPoints(100000L);
+            h.setGold(10000L);
+            h.setTrap("High Tension Spring");
+            h.setBase("Wooden Base with Target");
+            h.setLocation("Meadow");
+            userRepository.save(h);
+        }
 
         var faker = new Faker();
         var users = new ArrayList<User>();
@@ -45,6 +48,7 @@ public class DatabaseSeeder implements CommandLineRunner {
             user.setGold(faker.number().numberBetween(100L, 1000000L));
             user.setTrap("High Tension Spring");
             user.setBase("Wooden Base with Target");
+            user.setLocation("Meadow");
             users.add(user);
         }
 
