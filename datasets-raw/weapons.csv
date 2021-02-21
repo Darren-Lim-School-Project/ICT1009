@@ -1,0 +1,139 @@
+name,type,power,bonus,attraction_bonus,luck,cheese_effect
+2010 Blastoff Trap,Tactical,2600,15,0,25,-2
+2012 Big Boom Trap,Tactical,2500,15,20,25,-3
+500 Pound Spiked Crusher,Physical,250,10,0,1,0
+Admiral's Galleon Trap,Shadow,2500,25,0,15,0
+Ambrosial Portal,Shadow,1025,0,5,0,1
+Ambush,Tactical,3000,5,0,12,1
+Ancient Gauntlet,Physical,1050,4,20,4,3
+Ancient Spear Gun,Hydro,3600,5,10,12,1
+Anniversary Ambush,Tactical,3000,5,0,25,0
+Anniversary DeathBot,Physical,2400,15,10,25,-1
+Anniversary Reaper's Perch,Shadow,3300,10,5,25,-1
+Birthday Candle Kaboom,Physical,2400,30,20,14,-2
+Birthday Party Piñata Bonanza,Physical,2500,35,0,10,-1
+Blackstone Pass Trap,Tactical,3000,15,0,12,2
+Bottomless Grave,Shadow,1500,0,0,5,0
+Brain Extractor,Shadow,2000,5,5,6,1
+Bubbles: The Party Crasher Trap,Hydro,5800,18,8,8,-2
+Cackle Lantern Trap,Shadow,2200,5,10,12,-3
+Candy Crusher Trap,Shadow,2000,3,15,15,0
+Carousel Charger Trap,Physical,5000,15,10,20,-1
+Chesla's Revenge,Tactical,5000,2,10,16,3
+Christmas Cracker Trap,Physical,3000,15,5,24,2
+Chrome DeathBot,Physical,2800,20,15,30,-2
+Chrome DrillBot,Physical,3900,20,0,26,-4
+Chrome MonstroBot,Physical,8500,22,10,30,0
+Chrome Nannybot,Shadow,1200,5,5,6,1
+Chrome Oasis Water Node Trap,Hydro,5500,15,5,24,1
+Chrome Onyx Mallet,Physical,5000,30,0,20,-2
+Chrome Phantasmic Oasis Trap,Hydro,6200,20,15,28,2
+Chrome RhinoBot,Physical,6000,10,0,27,-5
+Chrome Sphynx Wrath,Tactical,6500,15,10,28,2
+Chrome Tacky Glue Trap,Physical,70,0,30,20,-1
+Chrome Temporal Turbine,Shadow,6000,25,5,28,0
+Clockapult of Time,Shadow,2275,10,5,10,3
+Clockapult of Winter Past,Shadow,2275,10,5,10,3
+Clockwork Portal Trap,Shadow,3900,12,10,20,0
+Creepy Coffin Trap,Shadow,1800,5,5,7,-3
+Digby DrillBot,Physical,3200,18,0,5,0
+Dimensional Chest Trap,Tactical,5200,8,10,21,3
+Double Diamond Adventure,Hydro,3500,0,5,18,4
+Dreaded Totem Trap,Shadow,3000,15,10,10,-2
+Enraged RhinoBot,Physical,5900,10,0,20,-4
+Explosive Toboggan Ride,Hydro,2700,14,3,16,3
+Festive Gauntlet Crusher,Physical,1200,5,25,5,3
+Fluffy DeathBot,Physical,2400,15,10,2,-1
+Giant Speaker,Tactical,2850,5,5,22,0
+Gingerbread House Surprise,Tactical,2200,10,10,8,6
+Glacier Gatler,Hydro,4800,10,10,20,2
+Goldfrost Crossbow Trap,Shadow,5000,18,0,20,2
+Golem Guardian Hydro Trap,Hydro,10000,15,20,28,1
+Golem Guardian Physical Trap,Physical,7000,15,20,32,1
+Golem Guardian Tactical Trap,Tactical,5000,15,20,30,1
+Gorgon Trap,Shadow,2000,5,5,7,-2
+Gouging Geyserite Trap,Tactical,9000,20,10,23,1
+Grungy Deathbot,Physical,2400,15,10,2,-1
+Harpoon Gun,Hydro,3000,7,0,0,-1
+Haunted Shipwreck Trap,Hydro,5000,20,10,10,-2
+Heat Bath,Hydro,4000,5,0,14,-1
+High Tension Spring,Physical,75,5,20,2,0
+HitGrab Horsey,Physical,550,2,0,20,2
+HitGrab Rainbow Rockin' Horse,Physical,1250,2,10,25,6
+HitGrab Rockin' Horse,Physical,1250,2,10,25,0
+Holiday Hydro Hailstone Trap,Hydro,3500,20,5,20,1
+Horrific Venus Mouse Trap,Tactical,3400,12,1,16,0
+Ice Blaster,Hydro,3800,5,5,12,1
+Icy RhinoBot,Physical,4950,0,0,8,-2
+Interdimensional Crossbow Trap,Shadow,4500,15,15,18,1
+Isle Idol Trap,Physical,5050,0,0,7,-1
+Isle Idol Hydroplane Skin,Hydro,3500,5,15,10,-1
+Isle Idol Stakeshooter Skin,Tactical,3750,12,5,14,-1
+Kraken Chaos,Hydro,3400,0,0,18,-2
+Maniacal Brain Extractor,Shadow,2600,10,0,13,2
+Moonbeam Barrier Trap,Shadow,4000,10,10,15,-1
+Mouse DeathBot,Physical,2400,15,10,2,-1
+Mouse Hot Tub,Physical,70,3,35,2,0
+Mouse Mary O'Nette,Physical,250,0,6,5,1
+Mouse Rocketine,Physical,650,6,0,0,-3
+Mouse Trebuchet,Physical,600,2,4,1,2
+Mutated Venus Mouse Trap,Tactical,2300,15,0,8,-4
+Mystic Pawn Pincher,Tactical,60,5,20,0,1
+Net Cannon,Hydro,3000,0,3,5,-1
+New Year's Fireworks Trap,Physical,6000,12,10,23,-1
+Ninja Ambush Trap,Tactical,3000,5,0,12,1
+NVMRC Forcefield Trap,Physical,2350,12,10,12,0
+Oasis Water Node Trap,Hydro,5200,12,10,20,0
+Obvious Ambush Trap,Tactical,3000,15,0,12,-2
+Onyx Mallet,Physical,3800,12,0,6,-1
+Paradise Falls Trap,Hydro,4000,25,25,22,-2
+PartyBot,Physical,2850,15,15,25,-1
+Phantasmic Oasis Trap,Hydro,5850,15,20,26,0
+Pneumatic Tube Trap,Physical,2300,20,5,18,0
+Pumpkin Pummeler,Shadow,1150,5,10,5,1
+Queso Fount Trap,Hydro,11000,30,10,25,-1
+Reaper's Perch,Shadow,3300,10,5,16,-1
+Rewers Riposte,Tactical,2900,15,5,25,1
+RhinoBot,Physical,4950,0,0,8,-2
+Rocket Propelled Gavel Trap,Physical,6200,15,0,22,-1
+Rune Shark Trap,Hydro,6700,15,20,27,2
+S.A.M. F.E.D. DN-5,Tactical,2750,5,20,15,1
+S.S. Scoundrel Sleigher Trap,Hydro,4500,12,10,18,1
+S.U.P.E.R. Scum Scrubber,Hydro,4000,15,15,15,-1
+Sandcastle Shard Trap,Shadow,3000,5,15,12,1
+Sandstorm MonstroBot,Physical,8000,20,5,27,0
+Sandtail Sentinel,Physical,6800,17,10,25,0
+School of Sharks,Hydro,9850,15,20,30,3
+Scum Scrubber,Hydro,3000,15,0,13,-1
+Shrink Ray Trap,Physical,1000,5,2,8,1
+Sinister Portal,Shadow,1025,5,0,0,-1
+Sleeping Stone Trap,Tactical,7475,15,10,32,-2
+Slumbering Boulder Trap,Tactical,12825,25,15,40,-4
+Smoldering Stone Sentinel Trap,Physical,12000,25,10,25,-2
+Snow Barrage,Tactical,1450,20,20,28,2
+Snowglobe Trap,Physical,2350,12,10,16,0
+Soul Catcher,Shadow,1500,5,5,5,0
+Soul Harvester,Shadow,2200,5,5,12,0
+Sphynx Wrath,Tactical,6100,10,10,25,2
+Steam Laser Mk. I,Hydro,4200,8,0,14,0
+Steam Laser Mk. II,Hydro,4800,12,10,18,1
+Steam Laser Mk. II (Broken!),Hydro,0,0,0,0,6
+Steam Laser Mk. III,Hydro,4800,12,10,18,1
+Swiss Army Mouse Trap,Physical,1200,2,2,10,0
+Tacky Glue Trap,Physical,70,0,40,2,-1
+Technic Pawn Pincher,Tactical,60,5,20,0,-1
+Temporal Turbine,Shadow,5000,20,0,25,-1
+Terrifying Spider Trap,Shadow,2400,5,5,13,0
+The Haunted Manor Trap,Shadow,3500,10,10,15,-1
+Thorned Venus Mouse Trap,Tactical,3400,5,2,14,2
+Ultra MegaMouser MechaBot Trap,Physical,2250,5,15,8,0
+Veiled Vine Trap,Tactical,3500,12,0,20,-2
+Venus Mouse Trap,Tactical,1900,0,5,5,3
+Warden Slayer Trap,Physical,6000,15,15,17,0
+Warpath Thrasher,Physical,4500,10,5,6,-1
+Well of Wisdom Trap,Tactical,4000,3,25,22,4
+Wrapped Gift Trap,Physical,1100,5,10,5,0
+Zugzwang's First Move,Tactical,3660,15,0,17,2
+Zugzwang's Last Move,Tactical,2200,15,0,7,1
+Zugzwang's Ultimate Move,Tactical,4500,20,10,20,2
+Zurreal's Folly,Tactical,2930,20,15,12,-5

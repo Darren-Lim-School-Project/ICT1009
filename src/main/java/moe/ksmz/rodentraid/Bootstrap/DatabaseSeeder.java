@@ -30,6 +30,8 @@ public class DatabaseSeeder implements CommandLineRunner {
         h.setEmail("x");
         h.setPoints(100000L);
         h.setGold(10000L);
+        h.setTrap("High Tension Spring");
+        h.setBase("Wooden Base with Target");
         userRepository.save(h);
 
         var faker = new Faker();
@@ -41,6 +43,8 @@ public class DatabaseSeeder implements CommandLineRunner {
             user.setEmail(faker.internet().safeEmailAddress());
             user.setPoints(faker.number().numberBetween(100L, 1000000L));
             user.setGold(faker.number().numberBetween(100L, 1000000L));
+            user.setTrap("High Tension Spring");
+            user.setBase("Wooden Base with Target");
             users.add(user);
         }
 
