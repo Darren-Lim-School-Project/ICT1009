@@ -52,7 +52,9 @@ public class Weapon {
     }
 
     public Long getTotalTrapPower() {
-        return (cat.getPower() + base.getPower()) * (1 + (cat.getBonus() + base.getBonus()));
+        return (cat.getPower() + base.getPower()) * (
+                (1 + (cat.getBonus() + base.getBonus())) / 100
+        );
     }
 
     public Long getTotalTrapLuck() {
