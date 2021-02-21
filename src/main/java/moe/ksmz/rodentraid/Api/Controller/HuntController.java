@@ -4,6 +4,7 @@ import java.util.List;
 import moe.ksmz.rodentraid.Auth.AuthStatus;
 import moe.ksmz.rodentraid.Models.Hunt;
 import moe.ksmz.rodentraid.Models.Repositories.HuntRepository;
+import moe.ksmz.rodentraid.Response.HuntAttempt;
 import moe.ksmz.rodentraid.sck.Service.Contracts.HuntManager;
 import moe.ksmz.rodentraid.sck.Service.Contracts.MiceManager;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +35,11 @@ public class HuntController {
     @GetMapping({"", "/"})
     ResponseEntity<List<Hunt>> all() {
         return ResponseEntity.of(huntService.getAllHunts(authStatus.id()));
+    }
+
+    @GetMapping({"/canHunt"})
+    HuntAttempt canHunt() {
+        return HuntAttempt.tooEarly(huntService.getLatestHunt(authStatus.id()).get());
     }
 
     @GetMapping("/newHunt/{location}")
