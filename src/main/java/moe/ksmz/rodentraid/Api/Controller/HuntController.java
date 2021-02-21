@@ -22,7 +22,7 @@ public class HuntController {
     private final UserRepository userRepository;
     private final HuntRepository huntRepository;
     private final MiceManager miceService;
-    private final HuntManager huntService;
+    private final HuntManager huntManager;
     private final TrapManager trapManager;
 
     public HuntController(
@@ -36,18 +36,18 @@ public class HuntController {
         this.userRepository = userRepository;
         this.huntRepository = huntRepository;
         this.miceService = miceService;
-        this.huntService = huntService;
+        this.huntManager = huntService;
         this.trapManager = trapManager;
     }
 
     @GetMapping({"", "/"})
     ResponseEntity<List<Hunt>> all() {
-        return ResponseEntity.of(huntService.getAllHunts(authStatus.id()));
+        return ResponseEntity.of(huntManager.getAllHunts(authStatus.id()));
     }
 
     @GetMapping("/newHunt/{location}")
     ResponseEntity<HuntAttempt> hunt(@PathVariable String location) {
-        var u = authStatus.getCurrentUser();
+        var user = authStatus.getCurrentUser();
         var randMice = miceService.getRandomMiceForLocation(location);
 
         // no mice at this location
@@ -55,29 +55,29 @@ public class HuntController {
             return ResponseEntity.notFound().build();
         }
 
-        if (!huntService.canHuntAgain(u.getId())) {
-            var latest = huntService.getLatestHunt(u.getId()).get();
+        if (!huntManager.canHuntAgain(user.getId())) {
+            var latest = huntManager.getLatestHunt(user.getId()).get();
             return ResponseEntity.ok(HuntAttempt.tooEarly(latest));
         }
 
         var mice = randMice.get();
-        var weapon = trapManager.getWeaponFor(u);
+        var weapon = trapManager.getWeaponFor(user);
         var attempt = weapon.attemptCatch(mice);
 
         var freshHunt = new Hunt();
         freshHunt.setMouse(mice.getName());
         freshHunt.setWeight(mice.getRandWeight());
         freshHunt.setCatchState(attempt);
-        freshHunt.setUser(u);
+        freshHunt.setUser(user);
 
         huntRepository.save(freshHunt);
 
         switch (attempt) {
                 // successful hunt, award points and gold
             case POWER, LUCK -> {
-                u.increaseGold(mice.getGold());
-                u.increasePoints(mice.getPoints());
-                userRepository.save(u);
+                user.increaseGold(mice.getGold());
+                user.increasePoints(mice.getPoints());
+                userRepository.save(user);
             }
         }
 
@@ -86,6 +86,6 @@ public class HuntController {
 
     @GetMapping("/latest")
     ResponseEntity<Hunt> last() {
-        return ResponseEntity.of(huntService.getLatestHunt(authStatus.id()));
+        return ResponseEntity.of(huntManager.getLatestHunt(authStatus.id()));
     }
 }
