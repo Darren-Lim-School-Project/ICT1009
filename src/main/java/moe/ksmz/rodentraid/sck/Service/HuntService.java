@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class HuntService implements HuntManager {
+    public static final int HUNT_INTERVAL = 5;
     private final HuntRepository huntRepository;
 
     public HuntService(HuntRepository huntRepository) {
@@ -26,7 +27,7 @@ public class HuntService implements HuntManager {
 
         var latestHunt = latest.get().getCreatedAt();
         return Duration.between(latestHunt.toInstant(), Instant.now())
-                        .compareTo(Duration.of(10, ChronoUnit.SECONDS))
+                        .compareTo(Duration.of(HUNT_INTERVAL, ChronoUnit.SECONDS))
                 > 0;
     }
 

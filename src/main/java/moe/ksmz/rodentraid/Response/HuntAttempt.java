@@ -10,6 +10,8 @@ import moe.ksmz.rodentraid.Models.Hunt;
 import moe.ksmz.rodentraid.sck.Domain.CatchState;
 import moe.ksmz.rodentraid.sck.Domain.Mice;
 
+import static moe.ksmz.rodentraid.sck.Service.HuntService.HUNT_INTERVAL;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
 @Setter
@@ -24,7 +26,7 @@ public class HuntAttempt {
         var diffInSeconds =
                 ChronoUnit.SECONDS.between(lastHunt.getCreatedAt().toInstant(), Instant.now());
 
-        return new HuntAttempt(diffInSeconds, null, null, null);
+        return new HuntAttempt(HUNT_INTERVAL - diffInSeconds, null, null, null);
     }
 
     public static HuntAttempt success(Hunt hunt, Mice mice) {

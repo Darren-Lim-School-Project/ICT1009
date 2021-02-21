@@ -25,7 +25,7 @@ public class Weapon {
         var adjustedTrapPower = mice.getEffectivenessFor(cat.getType()) * getTotalTrapPower();
 
         var roll = Math.random();
-        if (micePower > adjustedTrapPower) {
+        if (micePower < adjustedTrapPower) {
             // roll a flat 90% success + bonus
             return roll <= 0.9;
         } else {
@@ -51,10 +51,20 @@ public class Weapon {
         return !(roll < chanceToNotCatch);
     }
 
+    private Long rawPower() {
+        return cat.getPower() + base.getPower();
+    }
+
+    private Long rawBonus() {
+        return cat.getBonus() + base.getBonus();
+    }
+
     public Long getTotalTrapPower() {
-        return (cat.getPower() + base.getPower()) * (
-                (1 + (cat.getBonus() + base.getBonus())) / 100
+        var adjustedPower = rawPower() * (
+                1 + (rawBonus() / 100d)
         );
+
+        return Math.round(adjustedPower);
     }
 
     public Long getTotalTrapLuck() {

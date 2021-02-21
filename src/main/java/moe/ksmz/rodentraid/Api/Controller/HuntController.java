@@ -45,11 +45,6 @@ public class HuntController {
         return ResponseEntity.of(huntService.getAllHunts(authStatus.id()));
     }
 
-    @GetMapping({"/canHunt"})
-    HuntAttempt canHunt() {
-        return HuntAttempt.tooEarly(huntService.getLatestHunt(authStatus.id()).get());
-    }
-
     @GetMapping("/newHunt/{location}")
     ResponseEntity<HuntAttempt> hunt(@PathVariable String location) {
         var u = authStatus.getCurrentUser();
