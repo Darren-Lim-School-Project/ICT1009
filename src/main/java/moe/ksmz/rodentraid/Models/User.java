@@ -88,4 +88,12 @@ public class User implements Serializable {
     public Rank getCurrentRank() {
         return new Rank(this.points);
     }
+
+    public void increaseGold(Long by) {
+        this.gold += by;
+    }
+
+    public void increasePoints(Long by) {
+        this.points += by;
+    }
 }

@@ -7,11 +7,11 @@ public class Base extends AbstractTrap {
 
     @Override
     public Long getBonus() {
-        return bonus / 2;
+        return bonus;
     }
 
     @Override
     public Long getLuck() {
-        return luck / 2;
+        return luck;
     }
 }

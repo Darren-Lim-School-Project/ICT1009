@@ -17,12 +17,12 @@ public class Weapon {
         }
 
         // 2nd attempt
-        return feelingLucky(totalTrapLuck()) ? CatchState.LUCK : CatchState.FAILED;
+        return feelingLucky(getTotalTrapLuck()) ? CatchState.LUCK : CatchState.FAILED;
     }
 
     public boolean shouldBeCaught(Mice mice) {
         var micePower = mice.getPower();
-        var adjustedTrapPower = mice.getEffectivenessFor(cat.getType()) * totalTrapPower();
+        var adjustedTrapPower = mice.getEffectivenessFor(cat.getType()) * getTotalTrapPower();
 
         var roll = Math.random();
         if (micePower > adjustedTrapPower) {
@@ -51,11 +51,11 @@ public class Weapon {
         return !(roll < chanceToNotCatch);
     }
 
-    public Long totalTrapPower() {
+    public Long getTotalTrapPower() {
         return (cat.getPower() + base.getPower()) * (1 + (cat.getBonus() + base.getBonus()));
     }
 
-    public Long totalTrapLuck() {
+    public Long getTotalTrapLuck() {
         return cat.getLuck() + base.getLuck();
     }
 
