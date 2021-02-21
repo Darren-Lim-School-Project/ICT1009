@@ -35,7 +35,8 @@
             </template>
         </template>
         <template slot="end">
-            <b-navbar-item><b-button @click="logout">Logout</b-button>
+            <b-navbar-item
+                ><b-button @click="logout">Logout</b-button>
             </b-navbar-item>
         </template>
     </b-navbar>

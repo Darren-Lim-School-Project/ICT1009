@@ -19,13 +19,17 @@ const routes = [
         component: require("@/views/Index").default,
     },
     ...prefix("mice", [
-        { path: "/", name: "index", component: require("@/views/mice/Index").default }
+        {
+            path: "/",
+            name: "index",
+            component: require("@/views/mice/Index").default,
+        },
     ]),
     ...prefix("hunts", [
         {
             path: "/",
             name: "index",
-            component: require("@/views/Index").default,
+            component: require("@/views/hunt/Index").default,
         },
     ]),
     {

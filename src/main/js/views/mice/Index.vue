@@ -7,7 +7,11 @@
                     <b-dropdown v-model="location">
                         <template #trigger>
                             <b-button
-                                :label="location === '' ? 'Locations' : startCase(location)"
+                                :label="
+                                    location === ''
+                                        ? 'Locations'
+                                        : startCase(location)
+                                "
                                 icon-right="menu-down"
                             />
                         </template>
@@ -17,7 +21,7 @@
                             v-for="(location, index) in locations"
                             :key="index"
                             :value="location"
-                            >
+                        >
                             {{ startCase(location) }}
                         </b-dropdown-item>
                     </b-dropdown>
@@ -32,7 +36,11 @@
         </div>
         <b-loading :active="mice.length <= 0"></b-loading>
         <div v-if="mice.length > 0">
-            <div class="columns" v-for="(slice, index) in chunk(filteredMice, 4)" :key="index">
+            <div
+                class="columns"
+                v-for="(slice, index) in chunk(filteredMice, 4)"
+                :key="index"
+            >
                 <div class="column" v-for="(row, j) in slice" :key="j">
                     <div class="card">
                         <div class="card-content">
