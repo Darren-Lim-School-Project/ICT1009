@@ -60,9 +60,7 @@ public class Weapon {
     }
 
     public Long getTotalTrapPower() {
-        var adjustedPower = rawPower() * (
-                1 + (rawBonus() / 100d)
-        );
+        var adjustedPower = rawPower() * (1 + (rawBonus() / 100d));
 
         return Math.round(adjustedPower);
     }

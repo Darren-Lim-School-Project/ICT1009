@@ -1,5 +1,7 @@
 package moe.ksmz.rodentraid.Response;
 
+import static moe.ksmz.rodentraid.sck.Service.HuntService.HUNT_INTERVAL;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -9,8 +11,6 @@ import lombok.Setter;
 import moe.ksmz.rodentraid.Models.Hunt;
 import moe.ksmz.rodentraid.sck.Domain.CatchState;
 import moe.ksmz.rodentraid.sck.Domain.Mice;
-
-import static moe.ksmz.rodentraid.sck.Service.HuntService.HUNT_INTERVAL;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
