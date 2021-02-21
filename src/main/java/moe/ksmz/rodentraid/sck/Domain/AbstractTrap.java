@@ -4,16 +4,16 @@ import moe.ksmz.rodentraid.sck.Domain.Contracts.Trappable;
 
 public abstract class AbstractTrap implements Trappable {
     protected final String name;
+
     protected final Long power;
+
     protected final Long bonus;
+
     protected final Long luck;
-    protected final Freshness freshness;
+
+    protected final Integer freshness;
 
     public AbstractTrap(String name, Long power, Long bonus, Long luck, Integer freshness) {
-        this(name, power, bonus, luck, Freshness.of(freshness));
-    }
-
-    public AbstractTrap(String name, Long power, Long bonus, Long luck, Freshness freshness) {
         this.name = name;
         this.power = power;
         this.bonus = bonus;
@@ -26,7 +26,7 @@ public abstract class AbstractTrap implements Trappable {
     }
 
     public Freshness getFreshness() {
-        return freshness;
+        return Freshness.of(freshness);
     }
 
     @Override
