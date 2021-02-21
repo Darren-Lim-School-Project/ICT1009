@@ -9,6 +9,7 @@ import moe.ksmz.rodentraid.Models.Repositories.HuntRepository;
 import moe.ksmz.rodentraid.Models.Repositories.UserRepository;
 import moe.ksmz.rodentraid.sck.Service.Contracts.HuntManager;
 import moe.ksmz.rodentraid.sck.Service.Contracts.MiceManager;
+import moe.ksmz.rodentraid.sck.Service.Contracts.TrapManager;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -28,7 +29,8 @@ public class SmokeTest {
     @MockBean UserService userService;
     @MockBean MiceManager miceManager;
     @MockBean HuntManager huntManager;
-
+    @MockBean TrapManager trapManager;
+    
     @Test
     void itWorks() throws Exception {
         this.http.perform(get("/")).andExpect(status().isOk());
