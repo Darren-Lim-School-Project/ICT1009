@@ -10,14 +10,14 @@ public class Weapon {
         this.base = base;
     }
 
-    public boolean attemptCatch(Mice mice) {
+    public CatchState attemptCatch(Mice mice) {
         // 1st attempt
         if (shouldBeCaught(mice)) {
-            return true;
+            return CatchState.POWER;
         }
 
         // 2nd attempt
-        return feelingLucky(totalTrapLuck());
+        return feelingLucky(totalTrapLuck()) ? CatchState.LUCK : CatchState.FAILED;
     }
 
     public boolean shouldBeCaught(Mice mice) {
@@ -57,5 +57,13 @@ public class Weapon {
 
     public Long totalTrapLuck() {
         return cat.getLuck() + base.getLuck();
+    }
+
+    public Cat getCat() {
+        return cat;
+    }
+
+    public Base getBase() {
+        return base;
     }
 }
