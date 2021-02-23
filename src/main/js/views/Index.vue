@@ -60,12 +60,25 @@
             <article class="panel is-info">
                 <p class="panel-heading">Hunter's Journal</p>
                 <a
-                    class="panel-block"
+                    :class="{
+                        'panel-block': true,
+                        'has-background-danger-light':
+                            hunt.catchState === 'FAILED',
+                        'has-background-success-light':
+                            hunt.catchState !== 'FAILED',
+                    }"
                     v-for="(hunt, index) in huntLog"
                     :key="index"
                 >
                     <span class="panel-icon">
-                        <i class="mdi mdi-pencil" aria-hidden="true"></i>
+                        <i
+                            :class="{
+                                mdi: true,
+                                'mdi-check': hunt.catchState !== 'FAILED',
+                                'mdi-close-thick': hunt.catchState === 'FAILED',
+                            }"
+                            aria-hidden="true"
+                        ></i>
                     </span>
                     <p>{{ hunt.catchOutcome }}</p>
                 </a>
@@ -111,10 +124,18 @@ export default {
         async travelToLocation() {
             let selected = this.selectedLocation.name;
             await http.post(`/location/${selected}`);
-            this.huntLog.unshift({catchOutcome: `I travelled to the ${startCase(selected)}.`});
+            this.huntLog.unshift({ catchOutcome: `I travelled to the ${startCase(selected)}.` });
         },
         async startHunt() {
-            await http.post(`/hunt/newHunt`);
+            let { data } = await http.post(`/hunt/newHunt`);
+            if (data.tooEarly !== undefined) {
+                this.$buefy.toast.open({
+                    duration: 5000,
+                    message: `<b>Too early! Wait for ${data.tooEarly} more seconds.</b>`,
+                    position: "is-bottom",
+                    type: "is-danger",
+                });
+            }
         },
         async subscribe() {
             await socketClient.listen(`hunt/${this.user.id}`, response => {

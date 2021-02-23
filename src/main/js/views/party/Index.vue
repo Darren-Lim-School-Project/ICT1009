@@ -81,7 +81,7 @@
                         </article>
                     </div>
                 </div>
-                <div class="pt-4">
+                <div class="pt-4 card mt-4">
                     <div class="hero-body">
                         <div
                             style="
@@ -147,13 +147,25 @@
                     <article class="panel is-info">
                         <p class="panel-heading">Party's Journal</p>
                         <a
-                            class="panel-block"
+                            :class="{
+                                'panel-block': true,
+                                'has-background-danger-light':
+                                    hunt.catchState === 'FAILED',
+                                'has-background-success-light':
+                                    hunt.catchState !== 'FAILED',
+                            }"
                             v-for="(hunt, index) in huntLog"
                             :key="index"
                         >
                             <span class="panel-icon">
                                 <i
-                                    class="mdi mdi-pencil"
+                                    :class="{
+                                        mdi: true,
+                                        'mdi-check':
+                                            hunt.catchState !== 'FAILED',
+                                        'mdi-close-thick':
+                                            hunt.catchState === 'FAILED',
+                                    }"
                                     aria-hidden="true"
                                 ></i>
                             </span>
@@ -196,6 +208,8 @@ export default {
             chatLog: [],
             huntLog: [],
             userInput: "",
+            huntSubscription: null,
+            chatSubscription: null,
             state: {
                 huntButton: "Start Hunt",
                 hunting: false,
@@ -211,6 +225,8 @@ export default {
             await this.subscribe();
         },
         async leaveParty() {
+            this.huntSubscription.unsubscribe();
+            this.chatSubscription.unsubscribe();
             await this.leave();
             await this.updateParty();
         },
@@ -237,12 +253,12 @@ export default {
                 this.party.users = JSON.parse(response.body);
             });
 
-            await socketClient.listen(`hunt/${this.user.id}`, response => {
+            this.huntSubscription = await socketClient.listen(`hunt/${this.user.id}`, response => {
                 let hunt = JSON.parse(response.body);
                 this.huntLog.unshift(hunt);
             });
 
-            await socketClient.listen(`chat/${this.party.room}`, response => {
+            this.chatSubscription = await socketClient.listen(`chat/${this.party.room}`, response => {
                 let { username, message } = JSON.parse(response.body);
                 console.log(response.body);
                 this.chatLog.push({ username, message, me: username === this.user.name });

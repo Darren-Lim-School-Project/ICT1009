@@ -26,15 +26,17 @@ export class SocketClient {
     }
 
     /**
+     *
      * @param {string} topic
-     *  @param {function} callback
+     * @param {function} callback
+     * @returns {Promise<Subscription>}
      */
     async listen(topic, callback) {
         if (!this.open) {
             await sleep(2 * 1000);
         }
 
-        this.stompClient.subscribe(`/topic/${topic}`, (response) => {
+        return this.stompClient.subscribe(`/topic/${topic}`, (response) => {
             callback(response);
             response.ack();
         });
