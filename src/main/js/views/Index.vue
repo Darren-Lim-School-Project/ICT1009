@@ -58,9 +58,10 @@
         </div>
         <div class="pt-4">
             <article class="panel is-info">
-                <p class="panel-heading">Hunter's Journal</p>
+                <p class="panel-heading">Hunter's Journal - {{ startCase(user.location) }}</p>
                 <a
                     :class="{
+                        'is-flex': true,
                         'panel-block': true,
                         'has-background-danger-light':
                             hunt.catchState === 'FAILED',
@@ -70,7 +71,7 @@
                     v-for="(hunt, index) in huntLog"
                     :key="index"
                 >
-                    <span class="panel-icon">
+                    <span class="panel-icon ml-3 is-justify-content-flex-start">
                         <i
                             :class="{
                                 mdi: true,
@@ -81,6 +82,7 @@
                         ></i>
                     </span>
                     <p>{{ hunt.catchOutcome }}</p>
+                    <span class="pr-3 is-justify-content-flex-end ml-auto">{{ fuzzyDate(hunt.createdAt) }}</span>
                 </a>
             </article>
         </div>
@@ -91,6 +93,7 @@ import { socketClient } from "@/app";
 import { startCase } from "lodash";
 import { mapActions, mapGetters, mapState } from "vuex";
 import http from "@/http";
+import { fuzzyDate } from "@/formatters";
 
 export default {
     name: "MainIndex",
@@ -111,6 +114,7 @@ export default {
     },
     methods: {
         startCase,
+        fuzzyDate,
         ...mapActions("auth", ["checkAuthStatus"]),
         async fetchLocations() {
             let { data } = await http.get("/location");
