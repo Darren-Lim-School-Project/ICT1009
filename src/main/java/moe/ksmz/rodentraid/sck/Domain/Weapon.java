@@ -25,6 +25,7 @@ public class Weapon {
         var adjustedTrapPower = mice.getEffectivenessFor(cat.getType()) * getTotalTrapPower();
 
         var roll = Math.random();
+        // TODO: scaling bonus
         if (micePower < adjustedTrapPower) {
             // roll a flat 90% success + bonus
             return roll <= 0.9;

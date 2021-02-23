@@ -1,6 +1,7 @@
 package moe.ksmz.rodentraid.Api.Controller;
 
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import moe.ksmz.rodentraid.Auth.AuthStatus;
 import moe.ksmz.rodentraid.Auth.PartyStatus;
 import moe.ksmz.rodentraid.Models.User;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/party")
+@Slf4j
 public class PartyController {
     private final SimpMessagingTemplate messageBus;
     private final PartyService partyService;
@@ -31,25 +33,46 @@ public class PartyController {
 
     @GetMapping("/room")
     ResponseEntity<PartyResponse> room() {
-        if (partyStatus.inParty()) {
-            var room = partyStatus.getRoom();
-
-            return ResponseEntity.ok(new PartyResponse(room, partyService.usersIn(room)));
+        if (!partyStatus.inParty()) {
+            return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.notFound().build();
+        var user = authStatus.getCurrentUser();
+        var room = partyStatus.getRoom();
+        var inRoom = partyService.rawUsersIn(room);
+        if (!inRoom.contains(user.getId())) {
+            log.info("ID: {} not in room {}, removing", user.getId(), room);
+            partyStatus.clearRoom();
+        }
+
+        return ResponseEntity.ok(new PartyResponse(room, partyService.usersIn(room)));
     }
 
-    @GetMapping("/join/{room}")
+    @PostMapping("/join/{room}")
     ResponseEntity<List<User>> joinParty(@PathVariable String room) {
+        var userId = authStatus.id();
+        if (partyStatus.inParty()) {
+            partyService.leave(partyStatus.getRoom(), userId);
+        }
+
         partyService.add(room, authStatus.id());
         partyStatus.setRoom(room);
-        messageBus.convertAndSend("/topic/room/" + room, partyService.usersIn(room));
+        messageBus.convertAndSend("/topic/join/room/" + room, partyService.usersIn(room));
 
         return ResponseEntity.ok(partyService.usersIn(room));
     }
 
-    @GetMapping("/startHunt")
+    @PostMapping("/leave")
+    ResponseEntity<?> leaveParty() {
+        var room = partyStatus.getRoom();
+        partyService.leave(room, authStatus.id());
+        partyStatus.clearRoom();
+        messageBus.convertAndSend("/topic/leave/room/" + room, partyService.usersIn(room));
+
+        return ResponseEntity.ok(partyService.usersIn(room));
+    }
+
+    @PostMapping("/startHunt")
     ResponseEntity<?> startPartyHunt() {
         if (!partyStatus.inParty()) {
             return ResponseEntity.notFound().build();

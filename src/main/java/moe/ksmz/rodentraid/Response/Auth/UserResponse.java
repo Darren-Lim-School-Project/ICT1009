@@ -10,6 +10,7 @@ import moe.ksmz.rodentraid.sck.Domain.Weapon;
 @Getter
 @AllArgsConstructor
 public class UserResponse {
+    private final Long id;
     private final String name;
     private final String email;
     private final Long gold;
@@ -20,6 +21,11 @@ public class UserResponse {
 
     public static UserResponse fromUser(User user, Weapon weapon) {
         return new UserResponse(
-                user.getName(), user.getEmail(), user.getGold(), user.getCurrentRank(), weapon);
+                user.getId(),
+                user.getName(),
+                user.getEmail(),
+                user.getGold(),
+                user.getCurrentRank(),
+                weapon);
     }
 }

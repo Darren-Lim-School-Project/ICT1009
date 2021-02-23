@@ -23,4 +23,8 @@ public class PartyStatus implements Serializable {
     public boolean inParty() {
         return room != null;
     }
+
+    public void clearRoom() {
+        this.room = null;
+    }
 }

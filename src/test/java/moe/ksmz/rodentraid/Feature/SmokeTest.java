@@ -26,23 +26,21 @@ import org.springframework.test.web.servlet.MockMvc;
 @WebMvcTest
 @SpringJUnitWebConfig
 @MockBeans({
-        @MockBean(AuthStatus.class),
-        @MockBean(PartyStatus.class),
-        @MockBean(HuntRepository.class),
-        @MockBean(UserRepository.class),
-        @MockBean(UserService.class),
-        @MockBean(PartyService.class),
-        @MockBean(MiceManager.class),
-        @MockBean(HuntManager.class),
-        @MockBean(TrapManager.class),
-        @MockBean(LocationManager.class),
-        @MockBean(SimpMessagingTemplate.class)
+    @MockBean(AuthStatus.class),
+    @MockBean(PartyStatus.class),
+    @MockBean(HuntRepository.class),
+    @MockBean(UserRepository.class),
+    @MockBean(UserService.class),
+    @MockBean(PartyService.class),
+    @MockBean(MiceManager.class),
+    @MockBean(HuntManager.class),
+    @MockBean(TrapManager.class),
+    @MockBean(LocationManager.class),
+    @MockBean(SimpMessagingTemplate.class)
 })
 public class SmokeTest {
-    @Autowired
-    MockMvc http;
-    @Autowired
-    MockHttpSession session;
+    @Autowired MockMvc http;
+    @Autowired MockHttpSession session;
 
     @Test
     void itWorks() throws Exception {

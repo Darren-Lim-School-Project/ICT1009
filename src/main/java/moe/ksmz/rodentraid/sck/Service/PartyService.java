@@ -38,10 +38,13 @@ public class PartyService {
     }
 
     public void add(String room, Long userId) {
+        log.info("[party] ID {}: attempting to join {}", userId, room);
         var currentRoom = rooms.getOrDefault(room, new HashSet<>());
         currentRoom.add(userId);
+        log.info("[party] ID {}: added to {}", userId, room);
 
         rooms.put(room, currentRoom);
+        log.info("[party] updated room {}", room);
     }
 
     public void leave(String room, Long userId) {
@@ -52,10 +55,12 @@ public class PartyService {
         var currentRoom = rooms.get(room);
         currentRoom.remove(userId);
         rooms.put(room, currentRoom);
+        log.info("[party] ID {}: left room {}", userId, room);
     }
 
     public void destroy(String room) {
         rooms.remove(room);
+        log.info("[party] deleting room {}", room);
     }
 
     public List<User> huntTogetherIfPossible(String room)
@@ -87,6 +92,14 @@ public class PartyService {
         }
 
         return inRoom;
+    }
+
+    public List<Long> rawUsersIn(String room) {
+        if (!rooms.containsKey(room)) {
+            return new ArrayList<>();
+        }
+
+        return List.copyOf(rooms.get(room));
     }
 
     public List<User> usersIn(String room) {
