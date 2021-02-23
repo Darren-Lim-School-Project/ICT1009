@@ -10,6 +10,7 @@ export class SocketClient {
         this.open = false;
         this.stompClient = webstomp.client(`${address}/socks`, {
             debug,
+            heartbeat: false
         });
         this.stompClient.connect(
             {},
