@@ -11,7 +11,7 @@ public class CatchFormatter {
                 switch (catchState) {
                     case LUCK -> "and got lucky!";
                     case POWER -> "and was successful in the hunt!";
-                    case FAILED -> "but the mouse was too powerful!";
+                    case FAILED -> "but my efforts were fruitless.";
                 };
         messageBuffer.append(outcome);
 
@@ -21,7 +21,7 @@ public class CatchFormatter {
                             " I caught a %d gram %s mouse worth %d points and %d gold!",
                             weight, mice.getName(), mice.getPoints(), mice.getGold());
                     case FAILED -> String.format(
-                            " A(n) %s mouse ate my bait and managed to get away. Better luck next time!",
+                            " A %s mouse ate a piece of cheese without setting off my trap. Better luck next time!",
                             mice.getName());
                 };
         messageBuffer.append(catchIfAny);
