@@ -1,5 +1,5 @@
 import webstomp from "webstomp-client";
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export class SocketClient {
     /**
@@ -13,8 +13,8 @@ export class SocketClient {
         });
         this.stompClient.connect(
             {},
-            () =>  {
-                console.log(`Connected to ${address}`)
+            () => {
+                console.log(`Connected to ${address}`);
                 this.open = true;
             },
             (error) => {
@@ -30,7 +30,7 @@ export class SocketClient {
      *  @param {function} callback
      */
     async listen(topic, callback) {
-        if (! this.open) {
+        if (!this.open) {
             await sleep(2 * 1000);
         }
 

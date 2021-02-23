@@ -19,25 +19,28 @@ const getters = {
 
 const actions = {
     async login({ commit }, credentials) {
-        let response;
         try {
             /** @type {AxiosResponse<*>} */
-            response = await http.post("/auth/login", credentials);
+            let response = await http.post("/auth/login", credentials);
+            commit("setUser", response.data);
         } catch (e) {
             console.log(e);
 
             throw e;
         }
-
-        commit("setUser", response.data);
     },
     async logout({ commit }) {
-        await http.post("/auth/logout");
+        try {
+            await http.post("/auth/logout");
+        } catch (e) {
+            console.log(`already logged out: ${e}`);
+        }
+
         commit("setUser", null);
     },
     async checkAuthStatus({ commit }) {
-        /** @type {AxiosResponse<*>} */
         try {
+            /** @type {AxiosResponse<*>} */
             let response = await http.get("/auth/me");
             commit("setUser", response.data);
         } catch (e) {

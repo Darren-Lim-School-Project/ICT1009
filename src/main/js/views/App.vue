@@ -9,9 +9,7 @@
                     <router-link tag="li" to="/travel"
                         ><a>Travel</a></router-link
                     >
-                    <router-link tag="li" to="/party"
-                        ><a>Party</a></router-link
-                    >
+                    <router-link tag="li" to="/party"><a>Party</a></router-link>
                     <router-link tag="li" to="/shops"><a>Shops</a></router-link>
                     <router-link tag="li" to="/mice"><a>Mice</a></router-link>
                 </ul>
@@ -40,17 +38,17 @@ export default {
         ...mapGetters("auth", ["signedIn"]),
     },
     methods: {
-        ...mapActions("auth", ["checkAuthStatus"]),
-        async partyListener() {
-
-        },
+        ...mapActions("auth", ["checkAuthStatus", "logout"]),
+        ...mapActions("party", ["checkPartyStatus"]),
     },
     async created() {
         try {
             await this.checkAuthStatus();
-            await this.partyListener();
+            await this.checkPartyStatus();
         } catch (e) {
-            await this.logout();
+            if (e.response.status !== 401) {
+                await this.logout();
+            }
         } finally {
             this.state.loading = false;
         }

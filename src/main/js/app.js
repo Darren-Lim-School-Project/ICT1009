@@ -25,7 +25,10 @@ Vue.config.errorHandler = (err, vm, info) => {
 const wsHost = process.env.MIX_PRODUCTION
     ? `wss://${window.location.hostname}`
     : `ws://${window.location.hostname}:8080`;
-window.socketClient = new SocketClient(wsHost, !!process.env.MIX_PRODUCTION);
+export const socketClient = new SocketClient(
+    wsHost,
+    !!process.env.MIX_PRODUCTION
+);
 
 new Vue({
     render: (h) => h(App),
