@@ -9,6 +9,8 @@ services:
   app:
     image: rodentraid:0.0.1-SNAPSHOT
     container_name: web-app
+    environment:
+      TZ: "Asia/Singapore"
     ports:
       - "8080:8080"
     networks:
