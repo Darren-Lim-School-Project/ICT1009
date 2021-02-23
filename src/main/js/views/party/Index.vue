@@ -263,8 +263,12 @@ export default {
                 console.log(response.body);
                 this.chatLog.push({ username, message, me: username === this.user.name });
                 this.$nextTick(() => {
-                    let msgdiv = this.$refs.msgdiv;
-                    msgdiv.scrollTop = msgdiv.scrollHeight;
+                    try {
+                        let msgdiv = this.$refs.msgdiv;
+                        msgdiv.scrollTop = msgdiv.scrollHeight;
+                    } catch (e) {
+                        console.log(e);
+                    }
                 });
             });
         },
