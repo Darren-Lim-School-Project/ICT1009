@@ -27,7 +27,7 @@ const wsHost = process.env.MIX_PRODUCTION
     : `ws://${window.location.hostname}:8080`;
 export const socketClient = new SocketClient(
     wsHost,
-    !!process.env.MIX_PRODUCTION
+    !process.env.MIX_PRODUCTION
 );
 
 new Vue({
