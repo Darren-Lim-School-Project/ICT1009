@@ -26,7 +26,7 @@ public class DatabaseSeeder implements CommandLineRunner {
 
         var faker = new Faker();
 
-        for (var name : new String[] {"a", "b", "c", "x"}) {
+        for (var name : new String[] {"a", "b", "c", "d", "e", "f", "x", "y", "z"}) {
             var h = new User();
             h.setName(faker.name().fullName());
             h.setPassword(BCrypt.withDefaults().hashToString(12, "secret".toCharArray()));
@@ -35,6 +35,7 @@ public class DatabaseSeeder implements CommandLineRunner {
             h.setGold(faker.number().numberBetween(100L, 1000000L));
             h.setTrap("High Tension Spring");
             h.setBase("Wooden Base with Target");
+            h.setBait(10L);
             h.setLocation("Meadow");
             userRepository.save(h);
         }
@@ -49,6 +50,7 @@ public class DatabaseSeeder implements CommandLineRunner {
             user.setGold(faker.number().numberBetween(100L, 1000000L));
             user.setTrap("High Tension Spring");
             user.setBase("Wooden Base with Target");
+            user.setBait(10L);
             user.setLocation("Meadow");
             users.add(user);
         }

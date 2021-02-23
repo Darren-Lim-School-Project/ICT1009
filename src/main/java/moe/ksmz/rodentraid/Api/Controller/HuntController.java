@@ -3,6 +3,7 @@ package moe.ksmz.rodentraid.Api.Controller;
 import java.util.List;
 import moe.ksmz.rodentraid.Auth.AuthStatus;
 import moe.ksmz.rodentraid.Models.Hunt;
+import moe.ksmz.rodentraid.Models.InsufficientBaitException;
 import moe.ksmz.rodentraid.Models.Repositories.HuntRepository;
 import moe.ksmz.rodentraid.Models.Repositories.UserRepository;
 import moe.ksmz.rodentraid.Response.HuntAttempt;
@@ -74,16 +75,23 @@ public class HuntController {
         freshHunt.setCatchState(attempt);
         freshHunt.setUser(user);
         freshHunt.setCatchOutcome(CatchFormatter.getMessage(attempt, mice, weightOfCatch));
-        huntRepository.save(freshHunt);
 
+        // successful hunt, award points and gold
         switch (attempt) {
-                // successful hunt, award points and gold
             case POWER, LUCK -> {
                 user.increaseGold(mice.getGold());
                 user.increasePoints(mice.getPoints());
             }
         }
 
+        try {
+            user.decrementBait();
+        } catch (InsufficientBaitException exception) {
+            // TODO: finish
+            return ResponseEntity.ok(HuntAttempt.noBait());
+        }
+
+        huntRepository.save(freshHunt);
         userRepository.save(user);
         messageBus.convertAndSend("/topic/hunt/" + user.getId(), freshHunt);
 

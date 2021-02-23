@@ -15,6 +15,7 @@ public class UserResponse {
     private final String email;
     private final Long gold;
     private final String location;
+    private final Long bait;
     private final Rank rank;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -27,6 +28,7 @@ public class UserResponse {
                 user.getEmail(),
                 user.getGold(),
                 user.getLocation(),
+                user.getBait(),
                 user.getCurrentRank(),
                 weapon);
     }

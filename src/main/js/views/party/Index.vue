@@ -75,6 +75,16 @@
                                                 }}</span>
                                             </div>
                                         </div>
+                                        <div class="control">
+                                            <div class="tags has-addons">
+                                                <span class="tag is-dark"
+                                                    >Bait</span
+                                                >
+                                                <span class="tag is-info">{{
+                                                    partyMember.bait
+                                                }}</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -287,6 +297,7 @@ export default {
                 }
             } finally {
                 this.state.hunting = false;
+                await this.updateParty();
             }
         },
         async sendChatMessage() {

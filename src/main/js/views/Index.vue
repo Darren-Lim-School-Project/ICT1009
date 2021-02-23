@@ -7,6 +7,9 @@
                         <section class="is-flex pb-5">
                             <div class="is-justify-content-flex-start mr-auto">
                                 <h1 class="title">Camp</h1>
+                                <h2 class="subtitle">
+                                    {{ user.bait }} bait left.
+                                </h2>
                             </div>
                             <div class="is-justify-content-flex-end ml-auto">
                                 <b-field>
@@ -58,7 +61,9 @@
         </div>
         <div class="pt-4">
             <article class="panel is-info">
-                <p class="panel-heading">Hunter's Journal - {{ startCase(user.location) }}</p>
+                <p class="panel-heading">
+                    Hunter's Journal - {{ startCase(user.location) }}
+                </p>
                 <a
                     :class="{
                         'is-flex': true,
@@ -82,7 +87,9 @@
                         ></i>
                     </span>
                     <p>{{ hunt.catchOutcome }}</p>
-                    <span class="pr-3 is-justify-content-flex-end ml-auto">{{ fuzzyDate(hunt.createdAt) }}</span>
+                    <span class="pr-3 is-justify-content-flex-end ml-auto">{{
+                        fuzzyDate(hunt.createdAt)
+                    }}</span>
                 </a>
             </article>
         </div>
@@ -139,6 +146,15 @@ export default {
                     position: "is-bottom",
                     type: "is-danger",
                 });
+
+                if (data.noBait !== undefined) {
+                    this.$buefy.toast.open({
+                        duration: 5000,
+                        message: `<b>Out of bait!</b>`,
+                        position: "is-bottom",
+                        type: "is-danger",
+                    });
+                }
             }
         },
         async subscribe() {

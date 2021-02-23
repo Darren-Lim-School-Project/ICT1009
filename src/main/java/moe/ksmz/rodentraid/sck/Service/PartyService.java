@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import moe.ksmz.rodentraid.Auth.UserService;
 import moe.ksmz.rodentraid.Models.Hunt;
 import moe.ksmz.rodentraid.Models.Repositories.HuntRepository;
+import moe.ksmz.rodentraid.Models.Repositories.UserRepository;
 import moe.ksmz.rodentraid.Models.User;
 import moe.ksmz.rodentraid.sck.Service.Contracts.HuntManager;
 import moe.ksmz.rodentraid.sck.Service.Contracts.MiceManager;
@@ -24,6 +25,7 @@ public class PartyService {
     private final MiceManager miceManager;
     private final TrapManager trapManager;
     private final HuntRepository huntRepository;
+    private final UserRepository userRepository;
     private final SimpMessagingTemplate messageBus;
 
     public PartyService(
@@ -32,12 +34,14 @@ public class PartyService {
             MiceManager miceManager,
             TrapManager trapManager,
             HuntRepository huntRepository,
+            UserRepository userRepository,
             SimpMessagingTemplate messageBus) {
         this.userService = userService;
         this.huntManager = huntManager;
         this.miceManager = miceManager;
         this.trapManager = trapManager;
         this.huntRepository = huntRepository;
+        this.userRepository = userRepository;
         this.messageBus = messageBus;
     }
 
@@ -94,7 +98,18 @@ public class PartyService {
             freshHunt.setUser(user);
             freshHunt.setCatchOutcome(CatchFormatter.getMessage(attempt, mice, weight));
 
+            // successful hunt, award points and gold
+            switch (attempt) {
+                case POWER, LUCK -> {
+                    user.increaseGold(mice.getGold());
+                    user.increasePoints(mice.getPoints());
+                }
+            }
+
+            user.decrementBait();
+
             huntRepository.save(freshHunt);
+            userRepository.save(user);
             messageBus.convertAndSend("/topic/hunt/" + user.getId(), freshHunt);
         }
 

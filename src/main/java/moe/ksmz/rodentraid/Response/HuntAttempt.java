@@ -21,15 +21,21 @@ public class HuntAttempt {
     private Mice mice;
     private Long weight;
     private CatchState catchState;
+    private Boolean noBait;
 
     public static HuntAttempt tooEarly(Hunt lastHunt) {
         var diffInSeconds =
                 ChronoUnit.SECONDS.between(lastHunt.getCreatedAt().toInstant(), Instant.now());
 
-        return new HuntAttempt(HUNT_INTERVAL - diffInSeconds, null, null, null);
+        return new HuntAttempt(HUNT_INTERVAL - diffInSeconds, null, null, null, null);
     }
 
     public static HuntAttempt success(Hunt hunt, Mice mice) {
-        return new HuntAttempt(null, mice, hunt.getWeight(), hunt.getCatchState());
+        return new HuntAttempt(null, mice, hunt.getWeight(), hunt.getCatchState(), null);
+    }
+
+    // TODO: finish
+    public static HuntAttempt noBait() {
+        return new HuntAttempt(null, null, null, null, true);
     }
 }

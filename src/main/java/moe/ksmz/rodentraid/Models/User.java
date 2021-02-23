@@ -46,6 +46,8 @@ public class User implements Serializable {
 
     private String location;
 
+    private Long bait;
+
     @Temporal(TemporalType.TIMESTAMP)
     protected Date createdAt;
 
@@ -77,7 +79,8 @@ public class User implements Serializable {
             Long points,
             String trap,
             String base,
-            String location) {
+            String location,
+            Long bait) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -87,6 +90,7 @@ public class User implements Serializable {
         this.trap = trap;
         this.base = base;
         this.location = location;
+        this.bait = bait;
     }
 
     public Rank getCurrentRank() {
@@ -99,5 +103,31 @@ public class User implements Serializable {
 
     public void increasePoints(Long by) {
         this.points += by;
+    }
+
+    public void buyBait(Long by) {
+        // 1 bait costs 200
+        var total = by * 200;
+        var startingGold = this.gold;
+
+        startingGold -= total;
+        if (startingGold < 0) {
+            throw new InsufficientCreditsException();
+        }
+
+        this.gold = startingGold;
+        this.bait += by;
+    }
+
+    public void decrementBait() {
+        if (!sufficientBait()) {
+            throw new InsufficientBaitException();
+        }
+
+        this.bait--;
+    }
+
+    public boolean sufficientBait() {
+        return this.bait > 0;
     }
 }

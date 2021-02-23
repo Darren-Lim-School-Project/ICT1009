@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import moe.ksmz.rodentraid.Auth.AuthStatus;
 import moe.ksmz.rodentraid.Auth.PartyStatus;
+import moe.ksmz.rodentraid.Models.InsufficientBaitException;
 import moe.ksmz.rodentraid.Models.User;
 import moe.ksmz.rodentraid.Response.PartyResponse;
 import moe.ksmz.rodentraid.sck.Service.PartyOnCooldownException;
@@ -94,6 +95,11 @@ public class PartyController {
                                             + exception.users.stream()
                                                     .map(User::getName)
                                                     .collect(Collectors.joining(","))));
+        } catch (InsufficientBaitException exception) {
+            return ResponseEntity.status(400)
+                    .body(
+                            Collections.singletonMap(
+                                    "message", "One or more members have insufficient bait"));
         }
 
         return ResponseEntity.ok(users);

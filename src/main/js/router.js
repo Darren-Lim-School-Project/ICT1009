@@ -18,6 +18,10 @@ const routes = [
         name: "index",
         component: require("@/views/Index").default,
     },
+    {
+        path: "/shops",
+        component: require("@/views/shops/Index").default,
+    },
     ...prefix("party", [
         {
             path: "/",
