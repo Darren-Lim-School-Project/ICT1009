@@ -1,11 +1,14 @@
 package moe.ksmz.rodentraid.Api.Controller;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import moe.ksmz.rodentraid.Auth.AuthStatus;
 import moe.ksmz.rodentraid.Auth.PartyStatus;
 import moe.ksmz.rodentraid.Models.User;
 import moe.ksmz.rodentraid.Response.PartyResponse;
+import moe.ksmz.rodentraid.sck.Service.PartyOnCooldownException;
 import moe.ksmz.rodentraid.sck.Service.PartyService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -79,7 +82,19 @@ public class PartyController {
         }
 
         var room = partyStatus.getRoom();
-        var users = partyService.huntTogetherIfPossible(room);
+        List<User> users;
+        try {
+            users = partyService.huntTogetherIfPossible(room);
+        } catch (PartyOnCooldownException exception) {
+            return ResponseEntity.status(400)
+                    .body(
+                            Collections.singletonMap(
+                                    "message",
+                                    "Not all members can sound the horn: "
+                                            + exception.users.stream()
+                                                    .map(User::getName)
+                                                    .collect(Collectors.joining(","))));
+        }
 
         return ResponseEntity.ok(users);
     }
