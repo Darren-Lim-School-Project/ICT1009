@@ -102,7 +102,7 @@
                                 }"
                             >
                                 <b>{{ message.username }}</b>
-                                <br>
+                                <br />
                                 <span
                                     :class="{
                                         tag: true,
@@ -110,10 +110,9 @@
                                         'is-success': message.me,
                                         'is-info': !message.me,
                                     }"
-                                    >
-                                    {{ message.message }}
-                                </span
                                 >
+                                    {{ message.message }}
+                                </span>
                             </p>
                         </div>
                     </div>
@@ -147,14 +146,18 @@
                 <div class="pt-4">
                     <article class="panel is-info">
                         <p class="panel-heading">Party's Journal</p>
-                        <a class="panel-block is-active">
+                        <a
+                            class="panel-block"
+                            v-for="(hunt, index) in huntLog"
+                            :key="index"
+                        >
                             <span class="panel-icon">
                                 <i
                                     class="mdi mdi-pencil"
                                     aria-hidden="true"
                                 ></i>
                             </span>
-                            bulma
+                            <p>{{ hunt.catchOutcome }}</p>
                         </a>
                     </article>
                 </div>
@@ -191,6 +194,7 @@ export default {
             roomToJoin: "",
             party: {},
             chatLog: [],
+            huntLog: [],
             userInput: "",
             state: {
                 huntButton: "Start Hunt",
@@ -231,6 +235,11 @@ export default {
 
             await socketClient.listen(`leave/room/${this.party.room}`, response => {
                 this.party.users = JSON.parse(response.body);
+            });
+
+            await socketClient.listen(`hunt/${this.user.id}`, response => {
+                let hunt = JSON.parse(response.body);
+                this.huntLog.unshift(hunt);
             });
 
             await socketClient.listen(`chat/${this.party.room}`, response => {

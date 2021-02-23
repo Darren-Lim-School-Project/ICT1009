@@ -1,188 +1,133 @@
 <template>
     <div class="container">
-        <div class="columns pt-3">
-            <div class="column is-12">
-                <section class="hero is-info welcome is-small">
-                    <div class="hero-body">
-                        <div class="container">
-                            <h1 class="title">hello {{ $route.params.aaa }}</h1>
-                            <h2 class="subtitle">
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit. Natus, vitae.
-                            </h2>
-                        </div>
-                    </div>
-                </section>
-                <section class="info-tiles">
-                    <div class="tile is-ancestor has-text-centered">
-                        <div class="tile is-parent">
-                            <article class="tile is-child box">
-                                <p class="title">439k</p>
-                                <p class="subtitle">Users</p>
-                            </article>
-                        </div>
-                        <div class="tile is-parent">
-                            <article class="tile is-child box">
-                                <p class="title">59k</p>
-                                <p class="subtitle">Products</p>
-                            </article>
-                        </div>
-                        <div class="tile is-parent">
-                            <article class="tile is-child box">
-                                <p class="title">3.4k</p>
-                                <p class="subtitle">Open Orders</p>
-                            </article>
-                        </div>
-                        <div class="tile is-parent">
-                            <article class="tile is-child box">
-                                <p class="title">19</p>
-                                <p class="subtitle">Exceptions</p>
-                            </article>
-                        </div>
-                    </div>
-                </section>
-                <div class="columns">
-                    <div class="column is-6">
-                        <div class="card events-card">
-                            <header class="card-header">
-                                <p class="card-header-title">Events</p>
-                                <a
-                                    href="#"
-                                    class="card-header-icon"
-                                    aria-label="more options"
-                                >
-                                    <span class="icon">
-                                        <i
-                                            class="fa fa-angle-down"
-                                            aria-hidden="true"
-                                        ></i>
-                                    </span>
-                                </a>
-                            </header>
-                            <div class="card-table">
-                                <div class="content">
-                                    <table
-                                        class="table is-fullwidth is-striped"
-                                    >
-                                        <tbody>
-                                            <tr>
-                                                <td width="5%">
-                                                    <i class="fa fa-bell-o"></i>
-                                                </td>
-                                                <td>Lorum ipsum dolem aire</td>
-                                                <td class="level-right">
-                                                    <a
-                                                        class="button is-small is-primary"
-                                                        href="#"
-                                                        >Action</a
-                                                    >
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width="5%">
-                                                    <i class="fa fa-bell-o"></i>
-                                                </td>
-                                                <td>Lorum ipsum dolem aire</td>
-                                                <td class="level-right">
-                                                    <a
-                                                        class="button is-small is-primary"
-                                                        href="#"
-                                                        >Action</a
-                                                    >
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+        <div>
+            <div class="pb-5 px-3">
+                <div>
+                    <div>
+                        <section class="is-flex pb-5">
+                            <div class="is-justify-content-flex-start mr-auto">
+                                <h1 class="title">Camp</h1>
                             </div>
-                            <footer class="card-footer">
-                                <a href="#" class="card-footer-item"
-                                    >View All</a
-                                >
-                            </footer>
-                        </div>
-                    </div>
-                    <div class="column is-6">
-                        <div class="card">
-                            <header class="card-header">
-                                <p class="card-header-title">
-                                    Inventory Search
-                                </p>
-                                <a
-                                    href="#"
-                                    class="card-header-icon"
-                                    aria-label="more options"
-                                >
-                                    <span class="icon">
-                                        <i
-                                            class="fa fa-angle-down"
-                                            aria-hidden="true"
-                                        ></i>
-                                    </span>
-                                </a>
-                            </header>
-                            <div class="card-content">
-                                <div class="content">
-                                    <div
-                                        class="control has-icons-left has-icons-right"
-                                    >
-                                        <input
-                                            class="input is-large"
-                                            type="text"
-                                            placeholder=""
-                                        />
-                                        <span class="icon is-medium is-left">
-                                            <i class="fa fa-search"></i>
-                                        </span>
-                                        <span class="icon is-medium is-right">
-                                            <i class="fa fa-check"></i>
-                                        </span>
-                                    </div>
-                                </div>
+                            <div class="is-justify-content-flex-end ml-auto">
+                                <b-field>
+                                    <p class="control">
+                                        <b-dropdown v-model="selectedLocation">
+                                            <template #trigger>
+                                                <b-button
+                                                    :label="
+                                                        startCase(
+                                                            selectedLocation.name
+                                                        )
+                                                    "
+                                                    icon-right="menu-down"
+                                                />
+                                            </template>
+
+                                            <b-dropdown-item
+                                                v-for="(location, index) in locations"
+                                                :key="index"
+                                                :value="location"
+                                            >
+                                                {{ startCase(location.name) }}
+                                            </b-dropdown-item>
+                                        </b-dropdown>
+                                    </p>
+                                    <p class="control">
+                                        <b-button
+                                            class="button is-primary"
+                                            @click="travelToLocation"
+                                            >Travel
+                                        </b-button>
+                                    </p>
+                                    <b-button
+                                        class="mx-3"
+                                        type="is-success"
+                                        @click="startHunt"
+                                        >{{ state.huntButton }}
+                                        <b-loading
+                                            :is-full-page="false"
+                                            :active="state.hunting"
+                                        ></b-loading>
+                                    </b-button>
+                                </b-field>
                             </div>
-                        </div>
-                        <div class="card">
-                            <header class="card-header">
-                                <p class="card-header-title">User Search</p>
-                                <a
-                                    href="#"
-                                    class="card-header-icon"
-                                    aria-label="more options"
-                                >
-                                    <span class="icon">
-                                        <i
-                                            class="fa fa-angle-down"
-                                            aria-hidden="true"
-                                        ></i>
-                                    </span>
-                                </a>
-                            </header>
-                            <div class="card-content">
-                                <div class="content">
-                                    <div
-                                        class="control has-icons-left has-icons-right"
-                                    >
-                                        <input
-                                            class="input is-large"
-                                            type="text"
-                                            placeholder=""
-                                        />
-                                        <span class="icon is-medium is-left">
-                                            <i class="fa fa-search"></i>
-                                        </span>
-                                        <span class="icon is-medium is-right">
-                                            <i class="fa fa-check"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </section>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="pt-4">
+            <article class="panel is-info">
+                <p class="panel-heading">Hunter's Journal</p>
+                <a
+                    class="panel-block"
+                    v-for="(hunt, index) in huntLog"
+                    :key="index"
+                >
+                    <span class="panel-icon">
+                        <i class="mdi mdi-pencil" aria-hidden="true"></i>
+                    </span>
+                    <p>{{ hunt.catchOutcome }}</p>
+                </a>
+            </article>
+        </div>
     </div>
 </template>
 <script>
-export default {};
+import { socketClient } from "@/app";
+import { startCase } from "lodash";
+import { mapActions, mapGetters, mapState } from "vuex";
+import http from "@/http";
+
+export default {
+    name: "MainIndex",
+    data() {
+        return {
+            party: {},
+            huntLog: [],
+            locations: [],
+            selectedLocation: 0,
+            state: {
+                huntButton: "Start Hunt",
+                hunting: false,
+            },
+        };
+    },
+    computed: {
+        ...mapState("auth", ["user"]),
+    },
+    methods: {
+        startCase,
+        ...mapActions("auth", ["checkAuthStatus"]),
+        async fetchLocations() {
+            let { data } = await http.get("/location");
+            this.locations = data;
+            this.selectedLocation = { name: this.user.location };
+        },
+        async fetchHunts() {
+            let { data } = await http.get("/hunt");
+            this.huntLog = data;
+        },
+        async travelToLocation() {
+            let selected = this.selectedLocation.name;
+            await http.post(`/location/${selected}`);
+            this.huntLog.unshift({catchOutcome: `I travelled to the ${startCase(selected)}.`});
+        },
+        async startHunt() {
+            await http.post(`/hunt/newHunt`);
+        },
+        async subscribe() {
+            await socketClient.listen(`hunt/${this.user.id}`, response => {
+                let hunt = JSON.parse(response.body);
+                this.huntLog.unshift(hunt);
+                this.checkAuthStatus();
+            });
+        },
+    },
+    async created() {
+        await this.fetchLocations();
+        await this.fetchHunts();
+        await this.subscribe();
+    },
+};
 </script>

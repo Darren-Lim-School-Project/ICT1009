@@ -76,7 +76,8 @@ public class User implements Serializable {
             Long gold,
             Long points,
             String trap,
-            String base) {
+            String base,
+            String location) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -85,6 +86,7 @@ public class User implements Serializable {
         this.points = points;
         this.trap = trap;
         this.base = base;
+        this.location = location;
     }
 
     public Rank getCurrentRank() {

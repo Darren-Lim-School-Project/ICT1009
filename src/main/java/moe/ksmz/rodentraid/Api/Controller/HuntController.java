@@ -6,14 +6,13 @@ import moe.ksmz.rodentraid.Models.Hunt;
 import moe.ksmz.rodentraid.Models.Repositories.HuntRepository;
 import moe.ksmz.rodentraid.Models.Repositories.UserRepository;
 import moe.ksmz.rodentraid.Response.HuntAttempt;
+import moe.ksmz.rodentraid.sck.Service.CatchFormatter;
 import moe.ksmz.rodentraid.sck.Service.Contracts.HuntManager;
 import moe.ksmz.rodentraid.sck.Service.Contracts.MiceManager;
 import moe.ksmz.rodentraid.sck.Service.Contracts.TrapManager;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/hunt")
@@ -24,6 +23,7 @@ public class HuntController {
     private final MiceManager miceService;
     private final HuntManager huntManager;
     private final TrapManager trapManager;
+    private final SimpMessagingTemplate messageBus;
 
     public HuntController(
             AuthStatus authStatus,
@@ -31,13 +31,15 @@ public class HuntController {
             HuntRepository huntRepository,
             MiceManager miceService,
             HuntManager huntService,
-            TrapManager trapManager) {
+            TrapManager trapManager,
+            SimpMessagingTemplate messageBus) {
         this.authStatus = authStatus;
         this.userRepository = userRepository;
         this.huntRepository = huntRepository;
         this.miceService = miceService;
         this.huntManager = huntService;
         this.trapManager = trapManager;
+        this.messageBus = messageBus;
     }
 
     @GetMapping({"", "/"})
@@ -45,9 +47,10 @@ public class HuntController {
         return ResponseEntity.of(huntManager.getAllHunts(authStatus.id()));
     }
 
-    @GetMapping("/newHunt/{location}")
-    ResponseEntity<HuntAttempt> hunt(@PathVariable String location) {
+    @PostMapping("/newHunt")
+    ResponseEntity<HuntAttempt> hunt() {
         var user = authStatus.getCurrentUser();
+        var location = user.getLocation();
         var randMice = miceService.getRandomMiceForLocation(location);
 
         // no mice at this location
@@ -65,11 +68,12 @@ public class HuntController {
         var attempt = weapon.attemptCatch(mice);
 
         var freshHunt = new Hunt();
+        var weightOfCatch = mice.getRandWeight();
         freshHunt.setMouse(mice.getName());
-        freshHunt.setWeight(mice.getRandWeight());
+        freshHunt.setWeight(weightOfCatch);
         freshHunt.setCatchState(attempt);
         freshHunt.setUser(user);
-
+        freshHunt.setCatchOutcome(CatchFormatter.getMessage(attempt, mice, weightOfCatch));
         huntRepository.save(freshHunt);
 
         switch (attempt) {
@@ -77,9 +81,11 @@ public class HuntController {
             case POWER, LUCK -> {
                 user.increaseGold(mice.getGold());
                 user.increasePoints(mice.getPoints());
-                userRepository.save(user);
             }
         }
+
+        userRepository.save(user);
+        messageBus.convertAndSend("/topic/hunt/" + user.getId(), freshHunt);
 
         return ResponseEntity.ok(HuntAttempt.success(freshHunt, mice));
     }

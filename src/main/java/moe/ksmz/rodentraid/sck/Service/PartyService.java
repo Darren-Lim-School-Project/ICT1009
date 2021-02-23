@@ -11,6 +11,7 @@ import moe.ksmz.rodentraid.Models.User;
 import moe.ksmz.rodentraid.sck.Service.Contracts.HuntManager;
 import moe.ksmz.rodentraid.sck.Service.Contracts.MiceManager;
 import moe.ksmz.rodentraid.sck.Service.Contracts.TrapManager;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,18 +24,21 @@ public class PartyService {
     private final MiceManager miceManager;
     private final TrapManager trapManager;
     private final HuntRepository huntRepository;
+    private final SimpMessagingTemplate messageBus;
 
     public PartyService(
             UserService userService,
             HuntManager huntManager,
             MiceManager miceManager,
             TrapManager trapManager,
-            HuntRepository huntRepository) {
+            HuntRepository huntRepository,
+            SimpMessagingTemplate messageBus) {
         this.userService = userService;
         this.huntManager = huntManager;
         this.miceManager = miceManager;
         this.trapManager = trapManager;
         this.huntRepository = huntRepository;
+        this.messageBus = messageBus;
     }
 
     public void add(String room, Long userId) {
@@ -83,12 +87,15 @@ public class PartyService {
             var attempt = weapon.attemptCatch(mice);
 
             var freshHunt = new Hunt();
+            var weight = mice.getRandWeight();
             freshHunt.setMouse(mice.getName());
-            freshHunt.setWeight(mice.getRandWeight());
+            freshHunt.setWeight(weight);
             freshHunt.setCatchState(attempt);
             freshHunt.setUser(user);
+            freshHunt.setCatchOutcome(CatchFormatter.getMessage(attempt, mice, weight));
 
             huntRepository.save(freshHunt);
+            messageBus.convertAndSend("/topic/hunt/" + user.getId(), freshHunt);
         }
 
         return inRoom;

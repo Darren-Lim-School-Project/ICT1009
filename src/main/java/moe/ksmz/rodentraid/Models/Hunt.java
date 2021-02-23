@@ -31,6 +31,8 @@ public class Hunt implements Serializable {
     @Column(nullable = false)
     private Long weight;
 
+    private String catchOutcome;
+
     private CatchState catchState;
 
     @JsonIgnore
