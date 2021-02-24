@@ -1,4 +1,5 @@
 import webstomp from "webstomp-client";
+
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export class SocketClient {
@@ -10,13 +11,18 @@ export class SocketClient {
         this.open = false;
         this.stompClient = webstomp.client(`${address}/socks`, {
             debug,
-            heartbeat: false,
+            heartbeat: { outgoing: 5000, incoming: 5000 },
         });
+
         this.stompClient.connect(
             {},
             () => {
                 console.log(`Connected to ${address}`);
                 this.open = true;
+                setInterval(() => {
+                    this.stompClient._wsSend("\x0A");
+                    console.log(">>> PING");
+                }, 20000);
             },
             (error) => {
                 throw new Error(

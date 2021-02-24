@@ -146,15 +146,15 @@ export default {
                     position: "is-bottom",
                     type: "is-danger",
                 });
+            }
 
-                if (data.noBait !== undefined) {
-                    this.$buefy.toast.open({
-                        duration: 5000,
-                        message: `<b>Out of bait!</b>`,
-                        position: "is-bottom",
-                        type: "is-danger",
-                    });
-                }
+            if (data.noBait === true) {
+                this.$buefy.toast.open({
+                    duration: 5000,
+                    message: `<b>Out of bait!</b>`,
+                    position: "is-bottom",
+                    type: "is-danger",
+                });
             }
         },
         async subscribe() {
