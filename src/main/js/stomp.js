@@ -21,7 +21,6 @@ export class SocketClient {
                 this.open = true;
                 setInterval(() => {
                     this.stompClient._wsSend("\x0A");
-                    console.log(">>> PING");
                 }, 20000);
             },
             (error) => {

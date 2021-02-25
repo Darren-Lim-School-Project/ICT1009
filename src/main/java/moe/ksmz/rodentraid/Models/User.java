@@ -119,6 +119,17 @@ public class User implements Serializable {
         this.bait += by;
     }
 
+    public void buyItem(Long cost) {
+        var startingGold = this.gold;
+
+        startingGold -= cost;
+        if (startingGold < 0) {
+            throw new InsufficientCreditsException();
+        }
+
+        this.gold = startingGold;
+    }
+
     public void decrementBait() {
         if (!sufficientBait()) {
             throw new InsufficientBaitException();

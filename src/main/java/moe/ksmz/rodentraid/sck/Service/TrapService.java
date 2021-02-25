@@ -43,6 +43,16 @@ public class TrapService implements TrapManager {
         return new Weapon(getCat(user.getTrap()).get(), getBase(user.getBase()).get());
     }
 
+    @Override
+    public List<Cat> allTraps() {
+        return cats;
+    }
+
+    @Override
+    public List<Base> allBases() {
+        return bases;
+    }
+
     /** {@inheritDoc} */
     @Override
     public Optional<Cat> getCat(String catName) {

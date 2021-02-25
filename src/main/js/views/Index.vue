@@ -142,9 +142,7 @@
                             >
                                 <div class="control">
                                     <div class="tags has-addons">
-                                        <span class="tag is-dark"
-                                            >Power</span
-                                        >
+                                        <span class="tag is-dark">Power</span>
                                         <span class="tag is-success">{{
                                             user.weapon.totalTrapPower
                                         }}</span>

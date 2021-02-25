@@ -58,7 +58,9 @@
                                                     >Location</span
                                                 >
                                                 <span class="tag is-info">{{
-                                                    partyMember.location
+                                                    startCase(
+                                                        partyMember.location
+                                                    )
                                                 }}</span>
                                             </div>
                                         </div>
