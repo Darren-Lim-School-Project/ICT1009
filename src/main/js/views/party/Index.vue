@@ -289,7 +289,7 @@ export default {
             } catch (e) {
                 if (e.response.status === 400) {
                     this.$buefy.toast.open({
-                        duration: 5000,
+                        duration: 3000,
                         message: `<b>${e.response.data.message}</b>`,
                         position: "is-bottom",
                         type: "is-danger",

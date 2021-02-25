@@ -11,7 +11,8 @@
                     </header>
                     <div class="card-content">
                         <div class="content">
-                            <h2 class="subtitle">Quantity</h2>
+                            <h2 class="title">Quantity</h2>
+                            <p class="subtitle">Each bait costs 200</p>
                             <b-field>
                                 <b-input
                                     type="number"
@@ -47,6 +48,12 @@ export default {
             try {
                 await http.post(`/shop/${this.quantity}`);
                 await this.checkAuthStatus();
+                this.$buefy.toast.open({
+                    duration: 5000,
+                    message: `<b>Bought ${this.quantity} cheese.</b>`,
+                    position: "is-bottom",
+                    type: "is-success",
+                });
             } catch (e) {
                 if (e.response.status === 400) {
                     this.$buefy.toast.open({
