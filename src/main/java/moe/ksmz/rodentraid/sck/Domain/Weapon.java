@@ -27,11 +27,16 @@ public class Weapon {
         var roll = Math.random();
         // TODO: scaling bonus
         if (micePower < adjustedTrapPower) {
-            // roll a flat 90% success + bonus
-            return roll <= 0.9;
+            // roll a flat 80 success + bonus
+            return roll <= 0.8;
         } else {
             // roll a flat 10% success + bonus
-            return roll <= 0.1;
+            var difference = adjustedTrapPower - micePower;
+            var newDifference = difference/1000;
+                if (newDifference > 0.10){
+                    newDifference = 0.10L;
+                }
+                return roll<= (0.1 + newDifference);
         }
     }
 
