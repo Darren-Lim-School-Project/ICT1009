@@ -87,6 +87,22 @@ public class Mice {
         this.hydro = hydro;
     }
 
+    public Long getPhysical() {
+        return physical;
+    }
+
+    public Long getTactical() {
+        return tactical;
+    }
+
+    public Long getShadow() {
+        return shadow;
+    }
+
+    public Long getHydro() {
+        return hydro;
+    }
+
     public Long getEffectivenessFor(TrapTypes type) {
         return switch (type) {
                     case PHYSICAL -> physical;

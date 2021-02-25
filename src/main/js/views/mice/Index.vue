@@ -46,6 +46,21 @@
                         <div class="card-content">
                             <div class="content">
                                 <h4 class="subtitle">{{ row.name }}</h4>
+                                <b-field grouped group-multiline>
+                                    <div
+                                        class="control"
+                                        v-for="trapType in ['physical', 'tactical', 'shadow', 'hydro']"
+                                    >
+                                        <b-taglist attached>
+                                            <b-tag type="is-dark">{{
+                                                startCase(trapType)
+                                            }}</b-tag>
+                                            <b-tag type="is-info">x{{
+                                                row[trapType] / 100
+                                            }}</b-tag>
+                                        </b-taglist>
+                                    </div>
+                                </b-field>
                                 <b-taglist>
                                     <b-tag
                                         type="is-primary"
