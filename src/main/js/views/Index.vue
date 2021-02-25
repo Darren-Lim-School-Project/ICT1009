@@ -60,6 +60,111 @@
             </div>
         </div>
         <div class="pt-4">
+            <article class="panel is-primary">
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-content">
+                            <p class="title is-4">{{ user.name }}</p>
+                        </div>
+                    </div>
+                    <div class="columns">
+                        <div class="column pl-0">
+                            <p class="is-5 has-text-weight-bold">Trap</p>
+                            <p>{{ user.weapon.cat.name }}</p>
+                            <div
+                                class="field is-grouped is-grouped-multiline pt-1"
+                            >
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">Power</span>
+                                        <span class="tag is-info">{{
+                                            user.weapon.cat.power
+                                        }}</span>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">Bonus</span>
+                                        <span class="tag is-info"
+                                            >{{ user.weapon.cat.bonus }}%</span
+                                        >
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">Luck</span>
+                                        <span class="tag is-info">{{
+                                            user.weapon.cat.luck
+                                        }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="is-divider-vertical"></div>
+                        <div class="column pl-0">
+                            <p class="is-5 has-text-weight-bold">Base</p>
+                            <p>{{ user.weapon.base.name }}</p>
+                            <div
+                                class="field is-grouped is-grouped-multiline pt-1"
+                            >
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">Power</span>
+                                        <span class="tag is-info">{{
+                                            user.weapon.base.power
+                                        }}</span>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">Bonus</span>
+                                        <span class="tag is-info"
+                                            >{{ user.weapon.base.bonus }}%</span
+                                        >
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">Luck</span>
+                                        <span class="tag is-info">{{
+                                            user.weapon.base.luck
+                                        }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="is-divider-vertical"></div>
+                        <div class="column pl-0">
+                            <p class="has-text-weight-bold">Weapon</p>
+                            <p>Total</p>
+                            <div
+                                class="field is-grouped is-grouped-multiline pt-1"
+                            >
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark"
+                                            >Power</span
+                                        >
+                                        <span class="tag is-success">{{
+                                            user.weapon.totalTrapPower
+                                        }}</span>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">Luck</span>
+                                        <span class="tag is-success">{{
+                                            user.weapon.totalTrapLuck
+                                        }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <div class="pt-4">
             <article class="panel is-info">
                 <p class="panel-heading">
                     Hunter's Journal - {{ startCase(user.location) }}
