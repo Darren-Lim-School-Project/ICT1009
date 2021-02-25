@@ -27,6 +27,8 @@ public class AuthController {
 
     @GetMapping("/me")
     UserResponse me() {
+        var refreshed = userRepository.findById(authStatus.id()).get();
+        authStatus.setCurrentUser(refreshed);
         var user = authStatus.getCurrentUser();
 
         return UserResponse.fromUser(user, trapManager.getWeaponFor(user));

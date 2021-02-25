@@ -50,6 +50,8 @@ public class HuntController {
 
     @PostMapping("/newHunt")
     ResponseEntity<HuntAttempt> hunt() {
+        var refreshed = userRepository.findById(authStatus.id()).get();
+        authStatus.setCurrentUser(refreshed);
         var user = authStatus.getCurrentUser();
         var location = user.getLocation();
         var randMice = miceService.getRandomMiceForLocation(location);
