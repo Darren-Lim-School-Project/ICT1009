@@ -92,6 +92,7 @@ $navbar-height: 4rem;
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
+@import "~bulma-extensions/dist/css/bulma-extensions.min.css";
 
 html, body {
     font-family: "Nunito Sans", sans-serif;
