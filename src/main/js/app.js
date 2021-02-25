@@ -1,4 +1,4 @@
-import { router } from "@/router";
+import { registerDefaultTitle, router } from "@/router";
 import { SocketClient } from "@/stomp";
 import store from "@/store";
 import App from "@/views/App";
@@ -29,6 +29,8 @@ export const socketClient = new SocketClient(
     wsHost,
     !process.env.MIX_PRODUCTION
 );
+
+registerDefaultTitle("Rodent Raid");
 
 new Vue({
     render: (h) => h(App),

@@ -17,16 +17,19 @@ const routes = [
         path: "/",
         name: "index",
         component: require("@/views/Index").default,
+        meta: { title: "Hunts" },
     },
     {
         path: "/shops",
         component: require("@/views/shops/Index").default,
+        meta: { title: "Shops" },
     },
     ...prefix("party", [
         {
             path: "/",
             name: "index",
             component: require("@/views/party/Index").default,
+            meta: { title: "Party" },
         },
     ]),
     ...prefix("mice", [
@@ -34,13 +37,7 @@ const routes = [
             path: "/",
             name: "index",
             component: require("@/views/mice/Index").default,
-        },
-    ]),
-    ...prefix("hunts", [
-        {
-            path: "/",
-            name: "index",
-            component: require("@/views/hunt/Index").default,
+            meta: { title: "Mice Wiki" },
         },
     ]),
     {
