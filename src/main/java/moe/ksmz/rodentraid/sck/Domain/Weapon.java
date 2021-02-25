@@ -1,5 +1,8 @@
 package moe.ksmz.rodentraid.sck.Domain;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class Weapon {
     // Trap
     private final Cat cat;
@@ -30,13 +33,16 @@ public class Weapon {
             // roll a flat 80 success + bonus
             return roll <= 0.8;
         } else {
-            // roll a flat 10% success + bonus
-            var difference = adjustedTrapPower - micePower;
-            var newDifference = difference/1000;
-                if (newDifference > 0.10){
-                    newDifference = 0.10L;
-                }
-                return roll<= (0.1 + newDifference);
+            // roll a flat 20% success + bonus (capped at 20%)
+            var difference = micePower - adjustedTrapPower;
+            log.info("Difference in power: {}", difference);
+            var newDifference = difference / 1000d;
+            if (newDifference > 0.2) {
+                newDifference = 0.2;
+            }
+
+            log.info("Rolling with adjusted chance: {}", (0.1 + newDifference));
+            return roll <= (0.2 + newDifference);
         }
     }
 
