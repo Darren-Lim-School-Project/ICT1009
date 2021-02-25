@@ -156,6 +156,14 @@
                                         }}</span>
                                     </div>
                                 </div>
+                                <div class="control">
+                                    <div class="tags has-addons">
+                                        <span class="tag is-dark">Type</span>
+                                        <span class="tag is-success">{{
+                                                user.weapon.cat.type
+                                            }}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

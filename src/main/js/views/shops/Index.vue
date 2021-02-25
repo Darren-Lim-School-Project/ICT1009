@@ -53,7 +53,7 @@
                                                 trap.power
                                             }] [Bonus: ${trap.bonus}] [Luck: ${
                                                 trap.luck
-                                            }] [Cost: ${trap.power * 100}]`
+                                            }] [Cost: ${trap.power * 100}] [Type: ${trap.type}]`
                                         }}
                                     </option>
                                 </b-select>
