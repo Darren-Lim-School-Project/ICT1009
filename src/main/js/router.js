@@ -24,22 +24,21 @@ const routes = [
         component: require("@/views/shops/Index").default,
         meta: { title: "Shops" },
     },
-    ...prefix("party", [
-        {
-            path: "/",
-            name: "index",
-            component: require("@/views/party/Index").default,
-            meta: { title: "Party" },
-        },
-    ]),
-    ...prefix("mice", [
-        {
-            path: "/",
-            name: "index",
-            component: require("@/views/mice/Index").default,
-            meta: { title: "Mice Wiki" },
-        },
-    ]),
+    {
+        path: "/party",
+        component: require("@/views/party/Index").default,
+        meta: { title: "Party" },
+    },
+    {
+        path: "/mice",
+        component: require("@/views/mice/Index").default,
+        meta: { title: "Mice Wiki" },
+    },
+    {
+        path: "/score",
+        component: require("@/views/score/Index").default,
+        meta: { title: "Scoreboard" },
+    },
     {
         path: "*",
         component: require("@/views/layouts/PageNotFound").default,

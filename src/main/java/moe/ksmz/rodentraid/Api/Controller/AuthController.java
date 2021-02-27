@@ -1,5 +1,6 @@
 package moe.ksmz.rodentraid.Api.Controller;
 
+import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import moe.ksmz.rodentraid.Auth.AuthStatus;
 import moe.ksmz.rodentraid.Auth.UserService;
 import moe.ksmz.rodentraid.Models.Repositories.UserRepository;
+import moe.ksmz.rodentraid.Models.User;
 import moe.ksmz.rodentraid.Request.Auth.Login;
 import moe.ksmz.rodentraid.Response.Auth.UserResponse;
 import moe.ksmz.rodentraid.sck.Service.Contracts.TrapManager;
@@ -71,5 +73,10 @@ public class AuthController {
         session.invalidate();
 
         return ResponseEntity.status(200).build();
+    }
+
+    @GetMapping("/scores")
+    ResponseEntity<List<User>> topScores() {
+        return ResponseEntity.ok(userRepository.findAllByOrderByPointsDesc());
     }
 }
