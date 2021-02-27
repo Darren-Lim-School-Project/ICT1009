@@ -52,6 +52,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                         "/api/auth/login",
                         "/api/auth/forceLogin",
                         "/api/auth/forceLogin/*",
+                        "/api/auth/register",
                         "/socks");
     }
 }

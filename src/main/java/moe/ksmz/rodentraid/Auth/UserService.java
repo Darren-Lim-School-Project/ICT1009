@@ -34,4 +34,27 @@ public class UserService {
 
         return Optional.empty();
     }
+
+    public Optional<User> register(String name, String email, String password) {
+        var userExists = userRepository.findByEmail(email);
+        if (userExists.isPresent()) {
+            return Optional.empty();
+        }
+
+        var hashed = BCrypt.withDefaults().hashToString(12, password.toCharArray());
+        var newUser = new User();
+        newUser.setName(name);
+        newUser.setEmail(email);
+        newUser.setPassword(hashed);
+        newUser.setPoints(1L);
+        newUser.setGold(10000L);
+        newUser.setTrap("High Tension Spring");
+        newUser.setBase("Wooden Base with Target");
+        newUser.setBait(10L);
+        newUser.setLocation("Meadow");
+
+        userRepository.save(newUser);
+
+        return Optional.of(newUser);
+    }
 }

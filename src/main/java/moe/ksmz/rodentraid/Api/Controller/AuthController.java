@@ -10,6 +10,7 @@ import moe.ksmz.rodentraid.Auth.UserService;
 import moe.ksmz.rodentraid.Models.Repositories.UserRepository;
 import moe.ksmz.rodentraid.Models.User;
 import moe.ksmz.rodentraid.Request.Auth.Login;
+import moe.ksmz.rodentraid.Request.Auth.Register;
 import moe.ksmz.rodentraid.Response.Auth.UserResponse;
 import moe.ksmz.rodentraid.sck.Service.Contracts.TrapManager;
 import org.springframework.http.HttpHeaders;
@@ -73,6 +74,21 @@ public class AuthController {
         session.invalidate();
 
         return ResponseEntity.status(200).build();
+    }
+
+    @PostMapping("/register")
+    ResponseEntity<UserResponse> register(@RequestBody Register register) {
+        var user =
+                userService.register(
+                        register.getName(), register.getEmail(), register.getPassword());
+        if (user.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        authStatus.setCurrentUser(user.get());
+
+        return ResponseEntity.ok(
+                UserResponse.fromUser(user.get(), trapManager.getWeaponFor(user.get())));
     }
 
     @GetMapping("/scores")
