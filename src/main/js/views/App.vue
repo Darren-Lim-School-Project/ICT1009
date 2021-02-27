@@ -9,6 +9,7 @@
                     <router-link tag="li" to="/party"><a>Party</a></router-link>
                     <router-link tag="li" to="/shops"><a>Shops</a></router-link>
                     <router-link tag="li" to="/mice"><a>Mice</a></router-link>
+                    <router-link tag="li" to="/score"><a>Leaderboards</a></router-link>
                 </ul>
             </div>
             <div class="container px-3">
