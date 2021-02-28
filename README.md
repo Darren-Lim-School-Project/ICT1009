@@ -3,6 +3,9 @@
 <a href="https://github.com/sgtechICT1009/ict1009-team64-2021/actions"><img src="https://github.com/sgtechICT1009/ict1009-team64-2021/workflows/CI/badge.svg?branch=main" alt="Build Status"></a>
 </p>
 
+### Running Locally
+A precompiled fat jar is provided under the “final/” folder in both the repository and submission. You will need to be running at least JRE/JDK 15 to run this jar file. This will boot up a local server with h2 and no redis. Otherwise, use the live site (https://umi.amatsuka.me) to interact.
+
 ### Getting started
 
 - `git clone https://github.com/sgtechICT1009/ict1009-team64-2021.git`
